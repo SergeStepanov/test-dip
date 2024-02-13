@@ -4,12 +4,30 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Head, Link } from "@inertiajs/react";
+import "../Pages/Admin/AdminPage.css";
 
 export default function Authenticated({ children }) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
         <>
+            <Head title="Администраторская" />
+
+            <header className="page-header">
+                <h1 className="page-header__title">
+                    Идём<span>в</span>кино
+                </h1>
+                <span className="page-header__subtitle">
+                    Администраторррская
+                </span>
+                
+                <Link href={route("logout")} method="post" as="button">
+                    Log Out
+                </Link>
+            </header>
+
+            <main className="conf-steps">{children}</main>
+
             {/* <div className="min-h-screen bg-gray-100">
                 <nav className="bg-white border-b border-gray-100">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,23 +188,6 @@ export default function Authenticated({ children }) {
 
                 <main>{children}</main>
             </div> */}
-
-            <Head title="Администраторская" />
-
-            <header className="page-header">
-                <h1 className="page-header__title">
-                    Идём<span>в</span>кино
-                </h1>
-                <span className="page-header__subtitle">
-                    Администраторррская
-                </span>
-
-                <Link href={route("logout")} method="post" as="button">
-                    Log Out
-                </Link>
-            </header>
-
-            <main className="conf-steps">{children}</main>
         </>
     );
 }
