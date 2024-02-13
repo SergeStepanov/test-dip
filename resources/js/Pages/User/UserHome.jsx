@@ -1,13 +1,10 @@
 import HeaderUser from "@/Components/HeaderUser";
+import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from "@inertiajs/react";
 
-export default function UserHome({ auth, phpVersion }) {
+export default function UserHome({ auth }) {
     return (
-        <>
-            <Head title="ИдёмВКино" />
-            {phpVersion}
-            <HeaderUser/>
-
+        <GuestLayout>
             <nav className="page-nav">
                 <a className="page-nav__day page-nav__day_today" href="#">
                     <span className="page-nav__day-week">Пн</span>
@@ -68,22 +65,34 @@ export default function UserHome({ auth, phpVersion }) {
                         <h3 className="movie-seances__hall-title">Зал 1</h3>
                         <ul className="movie-seances__list">
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     10:20
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     14:10
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     18:40
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     22:00
                                 </a>
                             </li>
@@ -93,32 +102,50 @@ export default function UserHome({ auth, phpVersion }) {
                         <h3 className="movie-seances__hall-title">Зал 2</h3>
                         <ul className="movie-seances__list">
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     11:15
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     14:40
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     16:00
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     18:30
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     21:00
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     23:30
                                 </a>
                             </li>
@@ -303,6 +330,6 @@ export default function UserHome({ auth, phpVersion }) {
                     </div>
                 </section> */}
             </main>
-        </>
+        </GuestLayout>
     );
 }
