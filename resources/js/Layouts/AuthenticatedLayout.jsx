@@ -4,7 +4,7 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Head, Link } from "@inertiajs/react";
-import "../Pages/Admin/AdminPage.css";
+import "@/Pages/Admin/AdminPage.css";
 
 export default function Authenticated({ children }) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);

@@ -1,7 +1,7 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Head, Link } from "@inertiajs/react";
-import "../Pages/User/UserPages.css";
 import HeaderUser from "@/Components/HeaderUser";
+import "@/Pages/User/UserPages.css";
 
 export default function Guest({ children }) {
     return (
