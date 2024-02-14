@@ -1,6 +1,9 @@
 import { useForm } from "@inertiajs/react";
 import closeImg from "../../../../img/admin/close.png";
 import { hendleClosePopupsBtn } from "@/admin/helpFunctions";
+import InputLabel from "@/Components/InputLabel";
+import TextInput from "@/Components/TextInput";
+import InputError from "@/Components/InputError";
 
 export default function HallAddPopup() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -9,12 +12,13 @@ export default function HallAddPopup() {
 
     function hendleSubmit(e) {
         e.preventDefault();
-
-        post(route(""));
+        hendleClosePopupsBtn(e);
+        
+        post(route("hall.store"));
     }
 
     return (
-        <div className="popup">
+        <div className="popup active">
             <div className="popup__container">
                 <div className="popup__content">
                     <div className="popup__header">
@@ -31,19 +35,34 @@ export default function HallAddPopup() {
                     </div>
                     <div className="popup__wrapper">
                         <form onSubmit={hendleSubmit}>
-                            <label
-                                className="conf-step__label conf-step__label-fullsize"
+                            <InputLabel
                                 htmlFor="name"
+                                className="conf-step__label conf-step__label-fullsize"
                             >
                                 Название зала
-                                <input
-                                    className="conf-step__inputв"
+                                <TextInput
+                                    id="name"
                                     type="text"
-                                    placeholder="Например, &laquo;Зал 1&raquo;"
                                     name="name"
-                                    required
+                                    value={data.name}
+                                    className="conf-step__inputв"
+                                    placeholder="Например, &laquo;Зал 1&raquo;"
+                                    // autoComplete="username"
+                                    isFocused={true}
+                                    onChange={(e) =>
+                                        setData("name", e.target.value)
+                                    }
                                 />
-                            </label>
+                            </InputLabel>
+
+                            <InputError
+                                message={errors.name}
+                                style={{
+                                    fontSize: 15 + "px",
+                                    color: "red",
+                                }}
+                            />
+
                             <div className="conf-step__buttons text-center">
                                 <input
                                     type="submit"
