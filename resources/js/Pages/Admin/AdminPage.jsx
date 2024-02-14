@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/react";
 import React from "react";
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 
-function AdminPage() {
+function AdminPage({ halls, movies }) {
     return (
         <AuthenticatedLayout>
             <section className="conf-step">
@@ -13,17 +13,16 @@ function AdminPage() {
                 >
                     <h2 className="conf-step__title">Управление залами</h2>
                 </header>
+
                 <div className="conf-step__wrapper">
                     <p className="conf-step__paragraph">Доступные залы:</p>
                     <ul className="conf-step__list">
-                        <li>
-                            Зал 1
-                            <button className="conf-step__button conf-step__button-trash"></button>
-                        </li>
-                        <li>
-                            Зал 2
-                            <button className="conf-step__button conf-step__button-trash"></button>
-                        </li>
+                        {halls.map((hall) => (
+                            <li key={hall.id}>
+                                {hall.name}
+                                <button className="conf-step__button conf-step__button-trash"></button>
+                            </li>
+                        ))}
                     </ul>
                     <button className="conf-step__button conf-step__button-accent">
                         Создать зал

@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminPageController;
+use App\Http\Controllers\HallController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserPageController;
+use App\Models\Hall;
+use App\Models\Movie;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,22 +22,19 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('User/UserHome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [UserPageController::class, 'index']);
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/admin', function () {
-    return Inertia::render('Admin/AdminPage');
-})->middleware('auth')->name('admin');
+// Route::get('/admin', function () {
+//     return Inertia::render('Admin/AdminPage');
+// })->middleware('auth')->name('admin');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminPageController::class, 'index'])->name('admin');
+});
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
