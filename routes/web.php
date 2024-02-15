@@ -22,7 +22,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [UserPageController::class, 'index']);
+Route::get('/', [UserPageController::class, 'index'])->name('homepage');
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
@@ -34,6 +34,11 @@ Route::get('/', [UserPageController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminPageController::class, 'index'])->name('admin');
+
+    Route::resources([
+        'hall' => HallController::class,
+        'movie' => MovieController::class,
+    ]);
 });
 
 // Route::middleware('auth')->group(function () {
