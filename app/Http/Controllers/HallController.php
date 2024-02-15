@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HallRequest;
 use App\Models\Hall;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,9 @@ class HallController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(HallRequest $request)
     {
-        //
+        Hall::create($request->validated());
     }
 
     /**
@@ -50,7 +51,7 @@ class HallController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Hall $hall)
+    public function update(HallRequest $request, Hall $hall)
     {
         //
     }
