@@ -13,3 +13,8 @@ export function hendleClosePopupsBtn(evt) {
 
     popup.classList.remove("active");
 }
+
+// open popup
+export function openPopup(idPopup) {
+    document.querySelector('#' + idPopup).classList.add('active');
+}
