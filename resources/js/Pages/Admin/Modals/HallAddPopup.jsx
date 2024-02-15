@@ -6,19 +6,20 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 
 export default function HallAddPopup() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, hasErrors } = useForm({
         name: "",
     });
 
     function hendleSubmit(e) {
         e.preventDefault();
-        hendleClosePopupsBtn(e);
-        
+
         post(route("hall.store"));
+
+        if (data.name.trim() !== "") hendleClosePopupsBtn(e);
     }
 
     return (
-        <div className="popup active">
+        <div className="popup" id="add_hall_popup">
             <div className="popup__container">
                 <div className="popup__content">
                     <div className="popup__header">
@@ -38,6 +39,9 @@ export default function HallAddPopup() {
                             <InputLabel
                                 htmlFor="name"
                                 className="conf-step__label conf-step__label-fullsize"
+                                style={{
+                                    fontSize: 15 + "px",
+                                }}
                             >
                                 Название зала
                                 <TextInput
@@ -52,6 +56,10 @@ export default function HallAddPopup() {
                                     onChange={(e) =>
                                         setData("name", e.target.value)
                                     }
+                                    style={{
+                                        fontSize: 15 + "px",
+                                        padding: 3 + "px",
+                                    }}
                                 />
                             </InputLabel>
 
