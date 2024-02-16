@@ -4,7 +4,7 @@ import React from "react";
 import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
 import HallDeletePopup from "./Modals/HallDeletePopup";
 
-function AdminPageContent({ halls, movies, ...props }) {
+export default function AdminPageContent({ halls, movies, ...props }) {
     console.log(props)
     return (
         <AuthenticatedLayout>
@@ -500,5 +500,3 @@ function AdminPageContent({ halls, movies, ...props }) {
         </AuthenticatedLayout>
     );
 }
-
-export default AdminPage;
