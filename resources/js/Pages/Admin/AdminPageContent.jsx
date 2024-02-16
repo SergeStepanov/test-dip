@@ -1,13 +1,14 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
-import React from "react";
+import React, { useState } from "react";
 import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
 import HallDeletePopup from "./Modals/HallDeletePopup";
 
 export default function AdminPageContent({ halls, movies, ...props }) {
-    console.log(props)
+    const [delHall, setDelHall] = useState({});
+
     return (
-        <AuthenticatedLayout>
+        <AuthenticatedLayout delHall={delHall}>
             <section className="conf-step">
                 <header
                     className="conf-step__header conf-step__header_opened"
@@ -25,10 +26,7 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                                 <button
                                     className="conf-step__button conf-step__button-trash"
                                     onClick={() => {
-                                        // setData({
-                                        //     id: hall.id,
-                                        //     name: hall.name,
-                                        // });
+                                        setDelHall(hall);
 
                                         openPopup("delete_hall_popup");
                                     }}

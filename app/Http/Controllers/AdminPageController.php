@@ -12,7 +12,7 @@ class AdminPageController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('Admin/AdminPage', [
+        return Inertia::render('Admin/AdminPageContent', [
             'halls' => Hall::all(),
             'movies' => Movie::all(),
         ]);

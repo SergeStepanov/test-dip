@@ -1,25 +1,44 @@
-import { useForm } from '@inertiajs/react';
-import closeImg from '../../../../img/admin/close.png';
+import { useForm } from "@inertiajs/react";
+import closeImg from "../../../../img/admin/close.png";
+import { hendleClosePopupsBtn } from "@/admin/helpFunctions";
+import { useEffect } from "react";
 
-export default function HallDeletePopup() {
-    const {data, setData, post, processing, errors, reset} = useForm({
-        name: "",
+export default function HallDeletePopup({ delHall }) {
+    const {
+        data,
+        setData,
+        delete: destroy,
+        processing,
+        errors,
+        reset,
+    } = useForm({
+        hall: "",
     });
+
+    useEffect(() => {
+        setData("hall", delHall);
+    }, [delHall]);
 
     function hendleSubmit(e) {
         e.preventDefault();
 
-        post(route(''));
+        destroy(route("hall.destroy", data));
+
+        hendleClosePopupsBtn(e)
     }
 
     return (
-        <div className="popup">
+        <div className="popup" id="delete_hall_popup">
             <div className="popup__container">
                 <div className="popup__content">
                     <div className="popup__header">
                         <h2 className="popup__title">
                             Удаление зала
-                            <a className="popup__dismiss" href="#">
+                            <a
+                                className="popup__dismiss"
+                                href="#"
+                                onClick={(evt) => hendleClosePopupsBtn(evt)}
+                            >
                                 <img src={closeImg} alt="Закрыть" />
                             </a>
                         </h2>
@@ -28,7 +47,7 @@ export default function HallDeletePopup() {
                         <form onSubmit={hendleSubmit}>
                             <p className="conf-step__paragraph">
                                 Вы действительно хотите удалить зал{" "}
-                                <span></span>?
+                                <span>{delHall.name}</span>?
                             </p>
                             {/* <!-- В span будет подставляться название зала --> */}
                             <div className="conf-step__buttons text-center">
@@ -37,7 +56,10 @@ export default function HallDeletePopup() {
                                     value="Удалить"
                                     className="conf-step__button conf-step__button-accent"
                                 />
-                                <button className="conf-step__button conf-step__button-regular">
+                                <button
+                                    className="conf-step__button conf-step__button-regular"
+                                    onClick={(evt) => hendleClosePopupsBtn(evt)}
+                                >
                                     Отменить
                                 </button>
                             </div>

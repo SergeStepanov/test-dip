@@ -10,7 +10,7 @@ class UserPageController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('User/UserHome', [
+        return Inertia::render('User/UserHomeContent', [
             'phpVersion' => PHP_VERSION,
         ]);
     }

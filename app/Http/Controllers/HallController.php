@@ -27,7 +27,7 @@ class HallController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(HallRequest $request)
+    public function store(HallRequest $request): void
     {
         Hall::create($request->validated());
     }
@@ -61,6 +61,6 @@ class HallController extends Controller
      */
     public function destroy(Hall $hall)
     {
-        //
+        $hall->delete();
     }
 }
