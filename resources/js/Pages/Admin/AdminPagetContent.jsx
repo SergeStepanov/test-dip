@@ -1,9 +1,11 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
-import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
+import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
+import HallDeletePopup from "./Modals/HallDeletePopup";
 
-function AdminPage({ halls, movies }) {
+function AdminPageContent({ halls, movies, ...props }) {
+    console.log(props)
     return (
         <AuthenticatedLayout>
             <section className="conf-step">
@@ -20,16 +22,28 @@ function AdminPage({ halls, movies }) {
                         {halls.map((hall) => (
                             <li key={hall.id}>
                                 {hall.name}
-                                <button className="conf-step__button conf-step__button-trash"></button>
+                                <button
+                                    className="conf-step__button conf-step__button-trash"
+                                    onClick={() => {
+                                        // setData({
+                                        //     id: hall.id,
+                                        //     name: hall.name,
+                                        // });
+
+                                        openPopup("delete_hall_popup");
+                                    }}
+                                ></button>
                             </li>
                         ))}
                     </ul>
-                    <button className="conf-step__button conf-step__button-accent">
+                    <button
+                        className="conf-step__button conf-step__button-accent"
+                        onClick={() => openPopup("add_hall_popup")}
+                    >
                         Создать зал
                     </button>
                 </div>
             </section>
-
             {/* <section className="conf-step">
                 <header className="conf-step__header conf-step__header_opened" onClick={(evt) => hendleToggleHeaderSection(evt)}>
                     <h2 className="conf-step__title">Конфигурация залов</h2>
@@ -224,9 +238,11 @@ function AdminPage({ halls, movies }) {
                     </fieldset>
                 </div>
             </section> */}
-
             {/* <section className="conf-step">
-                <header className="conf-step__header conf-step__header_opened" onClick={(evt) => hendleToggleHeaderSection(evt)}>
+                <header
+                    className="conf-step__header conf-step__header_opened"
+                    onClick={(evt) => hendleToggleHeaderSection(evt)}
+                >
                     <h2 className="conf-step__title">Конфигурация цен</h2>
                 </header>
                 <div className="conf-step__wrapper">
@@ -298,9 +314,11 @@ function AdminPage({ halls, movies }) {
                     </fieldset>
                 </div>
             </section> */}
-
             {/* <section className="conf-step">
-                <header className="conf-step__header conf-step__header_opened" onClick={(evt) => hendleToggleHeaderSection(evt)}> 
+                <header
+                    className="conf-step__header conf-step__header_opened"
+                    onClick={(evt) => hendleToggleHeaderSection(evt)}
+                >
                     <h2 className="conf-step__title">Сетка сеансов</h2>
                 </header>
                 <div className="conf-step__wrapper">
@@ -319,7 +337,9 @@ function AdminPage({ halls, movies }) {
                             <h3 className="conf-step__movie-title">
                                 Звёздные войны XXIII: Атака клонированных клонов
                             </h3>
-                            <p className="conf-step__movie-duration">130 минут</p>
+                            <p className="conf-step__movie-duration">
+                                130 минут
+                            </p>
                         </div>
 
                         <div className="conf-step__movie">
@@ -331,7 +351,9 @@ function AdminPage({ halls, movies }) {
                             <h3 className="conf-step__movie-title">
                                 Миссия выполнима
                             </h3>
-                            <p className="conf-step__movie-duration">120 минут</p>
+                            <p className="conf-step__movie-duration">
+                                120 минут
+                            </p>
                         </div>
 
                         <div className="conf-step__movie">
@@ -343,7 +365,9 @@ function AdminPage({ halls, movies }) {
                             <h3 className="conf-step__movie-title">
                                 Серая пантера
                             </h3>
-                            <p className="conf-step__movie-duration">90 минут</p>
+                            <p className="conf-step__movie-duration">
+                                90 минут
+                            </p>
                         </div>
 
                         <div className="conf-step__movie">
@@ -355,7 +379,9 @@ function AdminPage({ halls, movies }) {
                             <h3 className="conf-step__movie-title">
                                 Движение вбок
                             </h3>
-                            <p className="conf-step__movie-duration">95 минут</p>
+                            <p className="conf-step__movie-duration">
+                                95 минут
+                            </p>
                         </div>
 
                         <div className="conf-step__movie">
@@ -364,8 +390,12 @@ function AdminPage({ halls, movies }) {
                                 alt="poster"
                                 src="i/poster.png"
                             />
-                            <h3 className="conf-step__movie-title">Кот Да Винчи</h3>
-                            <p className="conf-step__movie-duration">100 минут</p>
+                            <h3 className="conf-step__movie-title">
+                                Кот Да Винчи
+                            </h3>
+                            <p className="conf-step__movie-duration">
+                                100 минут
+                            </p>
                         </div>
                     </div>
 
@@ -450,8 +480,7 @@ function AdminPage({ halls, movies }) {
                         />
                     </fieldset>
                 </div>
-            </section>
- */}
+            </section> */}
             <section className="conf-step">
                 <header
                     className="conf-step__header conf-step__header_opened"

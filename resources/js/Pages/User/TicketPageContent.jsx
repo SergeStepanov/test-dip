@@ -1,6 +1,6 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 
-export default function TicketPage() {
+export default function TicketPageContent() {
     return (
         <GuestLayout>
             <main>

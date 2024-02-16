@@ -1,6 +1,6 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 
-export default function HallPage() {
+export default function HallPageContent() {
     return (
         <GuestLayout>
             <main>

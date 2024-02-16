@@ -2,7 +2,7 @@ import HeaderUser from "@/Components/HeaderUser";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from "@inertiajs/react";
 
-export default function UserHome({ auth }) {
+export default function UserHomeContent({ auth }) {
     return (
         <GuestLayout>
             <nav className="page-nav">

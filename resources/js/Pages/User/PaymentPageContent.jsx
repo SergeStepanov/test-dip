@@ -1,6 +1,6 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 
-export default function PaymentPage() {
+export default function PaymentPageContent() {
     return (
         <GuestLayout>
             <main>
