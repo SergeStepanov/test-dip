@@ -16,5 +16,5 @@ export function hendleClosePopupsBtn(evt) {
 
 // open popup
 export function openPopup(idPopup) {
-    document.querySelector('#' + idPopup).classList.add('active');
+    document.querySelector(`#${idPopup}`).classList.add('active');
 }
