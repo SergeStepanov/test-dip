@@ -8,7 +8,7 @@ import "@/Pages/Admin/AdminPage.css";
 import HallAddPopup from "@/Pages/Admin/Modals/HallAddPopup";
 import HallDeletePopup from "@/Pages/Admin/Modals/HallDeletePopup";
 
-export default function Authenticated({ children }) {
+export default function Authenticated({ children , delHall}) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -16,7 +16,7 @@ export default function Authenticated({ children }) {
             <Head title="Администраторская" />
 
             <HallAddPopup />
-            <HallDeletePopup />
+            <HallDeletePopup delHall={delHall}/>
 
             <header className="page-header">
                 <h1 className="page-header__title">
