@@ -6,6 +6,7 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Head, Link } from "@inertiajs/react";
 import "@/Pages/Admin/AdminPage.css";
 import HallAddPopup from "@/Pages/Admin/Modals/HallAddPopup";
+import HallDeletePopup from "@/Pages/Admin/Modals/HallDeletePopup";
 
 export default function Authenticated({ children }) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -13,8 +14,9 @@ export default function Authenticated({ children }) {
     return (
         <>
             <Head title="Администраторская" />
-            
+
             <HallAddPopup />
+            <HallDeletePopup />
 
             <header className="page-header">
                 <h1 className="page-header__title">
@@ -30,7 +32,6 @@ export default function Authenticated({ children }) {
             </header>
 
             <main className="conf-steps">{children}</main>
-
 
             {/* <div className="min-h-screen bg-gray-100">
                 <nav className="bg-white border-b border-gray-100">
