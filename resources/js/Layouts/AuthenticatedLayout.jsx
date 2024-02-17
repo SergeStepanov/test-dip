@@ -20,17 +20,32 @@ export default function Authenticated({ children, delHall }) {
             <HallDeletePopup delHall={delHall} />
             <MovieAddPopup />
 
-            <header className="page-header">
-                <h1 className="page-header__title">
-                    Идём<span>в</span>кино
-                </h1>
-                <span className="page-header__subtitle">
-                    Администраторррская
-                </span>
-
-                <Link href={route("logout")} method="post" as="button">
-                    Log Out
-                </Link>
+            <header
+                className="page-header"
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+            >
+                <div>
+                    <h1 className="page-header__title">
+                        Идём<span>в</span>кино
+                    </h1>
+                    <span className="page-header__subtitle">
+                        Администраторррская
+                    </span>
+                </div>
+                <div>
+                    <Link
+                        href={route("logout")}
+                        method="post"
+                        as="button"
+                        className="login__input"
+                    >
+                        Выйти
+                    </Link>
+                </div>
             </header>
 
             <main className="conf-steps">{children}</main>
