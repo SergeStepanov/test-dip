@@ -312,7 +312,7 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                     </fieldset>
                 </div>
             </section> */}
-            {/* <section className="conf-step">
+            <section className="conf-step">
                 <header
                     className="conf-step__header conf-step__header_opened"
                     onClick={(evt) => hendleToggleHeaderSection(evt)}
@@ -321,12 +321,31 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                 </header>
                 <div className="conf-step__wrapper">
                     <p className="conf-step__paragraph">
-                        <button className="conf-step__button conf-step__button-accent">
+                        <button
+                            className="conf-step__button conf-step__button-accent"
+                            onClick={() => openPopup("add_movie_popup")}
+                        >
                             Добавить фильм
                         </button>
                     </p>
                     <div className="conf-step__movies">
-                        <div className="conf-step__movie">
+                        {movies.map((movie) => (
+                            <div className="conf-step__movie" key={movie.id}>
+                                <img
+                                    className="conf-step__movie-poster"
+                                    alt="poster"
+                                    src="i/poster.png"
+                                />
+                                <h3 className="conf-step__movie-title">
+                                    {movie.title}
+                                </h3>
+                                <p className="conf-step__movie-duration">
+                                    {movie.duration &&
+                                        movie.duration + " минут"}
+                                </p>
+                            </div>
+                        ))}
+                        {/* <div className="conf-step__movie">
                             <img
                                 className="conf-step__movie-poster"
                                 alt="poster"
@@ -338,66 +357,10 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                             <p className="conf-step__movie-duration">
                                 130 минут
                             </p>
-                        </div>
-
-                        <div className="conf-step__movie">
-                            <img
-                                className="conf-step__movie-poster"
-                                alt="poster"
-                                src="i/poster.png"
-                            />
-                            <h3 className="conf-step__movie-title">
-                                Миссия выполнима
-                            </h3>
-                            <p className="conf-step__movie-duration">
-                                120 минут
-                            </p>
-                        </div>
-
-                        <div className="conf-step__movie">
-                            <img
-                                className="conf-step__movie-poster"
-                                alt="poster"
-                                src="i/poster.png"
-                            />
-                            <h3 className="conf-step__movie-title">
-                                Серая пантера
-                            </h3>
-                            <p className="conf-step__movie-duration">
-                                90 минут
-                            </p>
-                        </div>
-
-                        <div className="conf-step__movie">
-                            <img
-                                className="conf-step__movie-poster"
-                                alt="poster"
-                                src="i/poster.png"
-                            />
-                            <h3 className="conf-step__movie-title">
-                                Движение вбок
-                            </h3>
-                            <p className="conf-step__movie-duration">
-                                95 минут
-                            </p>
-                        </div>
-
-                        <div className="conf-step__movie">
-                            <img
-                                className="conf-step__movie-poster"
-                                alt="poster"
-                                src="i/poster.png"
-                            />
-                            <h3 className="conf-step__movie-title">
-                                Кот Да Винчи
-                            </h3>
-                            <p className="conf-step__movie-duration">
-                                100 минут
-                            </p>
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div className="conf-step__seances">
+                    {/* <div className="conf-step__seances">
                         <div className="conf-step__seances-hall">
                             <h3 className="conf-step__seances-title">Зал 1</h3>
                             <div className="conf-step__seances-timeline">
@@ -476,9 +439,10 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                             value="Сохранить"
                             className="conf-step__button conf-step__button-accent"
                         />
-                    </fieldset>
+                    </fieldset> */}
                 </div>
-            </section> */}
+            </section>
+
             <section className="conf-step">
                 <header
                     className="conf-step__header conf-step__header_opened"

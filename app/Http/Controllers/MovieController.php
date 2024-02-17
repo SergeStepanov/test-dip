@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MovieRequest;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,9 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
-        //
+        Movie::create($request->validated());
     }
 
     /**

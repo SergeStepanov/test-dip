@@ -7,8 +7,9 @@ import { Head, Link } from "@inertiajs/react";
 import "@/Pages/Admin/AdminPage.css";
 import HallAddPopup from "@/Pages/Admin/Modals/HallAddPopup";
 import HallDeletePopup from "@/Pages/Admin/Modals/HallDeletePopup";
+import MovieAddPopup from "@/Pages/Admin/Modals/MovieAddPopup";
 
-export default function Authenticated({ children , delHall}) {
+export default function Authenticated({ children, delHall }) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -16,7 +17,8 @@ export default function Authenticated({ children , delHall}) {
             <Head title="Администраторская" />
 
             <HallAddPopup />
-            <HallDeletePopup delHall={delHall}/>
+            <HallDeletePopup delHall={delHall} />
+            <MovieAddPopup />
 
             <header className="page-header">
                 <h1 className="page-header__title">
