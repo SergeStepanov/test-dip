@@ -1,6 +1,9 @@
 import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
+import { usePage } from "@inertiajs/react";
 
-function SessionGridContent({ movies }) {
+function SessionGridContent() {
+    const { movies } = usePage().props;
+
     return (
         <section className="conf-step">
             <header

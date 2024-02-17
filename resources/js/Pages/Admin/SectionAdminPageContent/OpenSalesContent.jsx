@@ -1,6 +1,6 @@
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 
-function OpenSalesContent() {
+function OpenSalesContent({ hall }) {
     return (
         <section className="conf-step">
             <header
@@ -14,7 +14,9 @@ function OpenSalesContent() {
                     Всё готово, теперь можно:
                 </p>
                 <button className="conf-step__button conf-step__button-accent">
-                    Открыть продажу билетов
+                    {hall.is_active === 0
+                        ? "Открыть продажу билетов"
+                        : "Приостановить продажу билетов"}
                 </button>
             </div>
         </section>

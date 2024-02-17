@@ -1,6 +1,9 @@
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
+import { usePage } from "@inertiajs/react";
 
-function ConfigurationHallsContent({ halls }) {
+function ConfigurationHallsContent() {
+    const { halls } = usePage().props;
+
     return (
         <section className="conf-step">
             <header

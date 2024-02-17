@@ -8,18 +8,24 @@ import OpenSalesContent from "./SectionAdminPageContent/OpenSalesContent";
 
 export default function AdminPageContent({ halls, movies, ...props }) {
     const [delHall, setDelHall] = useState({});
+    const [isCheckedHall, setIsCheckedHall] = useState(0);
 
     return (
         <AuthenticatedLayout delHall={delHall}>
-            <HallManagementContent halls={halls} setDelHall={setDelHall} />
+            {/* сделано */}
+            <HallManagementContent setDelHall={setDelHall} />
 
-            <ConfigurationHallsContent halls={halls} />
+            {/* не сделано */}
+            <ConfigurationHallsContent isCheckedHall={isCheckedHall} />
 
-            <PriceConfigurationContent halls={halls} />
+            {/* не сделано */}
+            <PriceConfigurationContent isCheckedHall={isCheckedHall} />
+
             {/* не готово */}
             <SessionGridContent movies={movies} />
 
-            <OpenSalesContent />
+            {/* не сделано */}
+            <OpenSalesContent hall={halls[isCheckedHall]} />
         </AuthenticatedLayout>
     );
 }

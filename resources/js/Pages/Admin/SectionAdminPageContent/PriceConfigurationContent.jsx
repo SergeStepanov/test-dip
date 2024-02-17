@@ -1,6 +1,8 @@
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
+import { usePage } from "@inertiajs/react";
 
-function PriceConfigurationContent({ halls }) {
+function PriceConfigurationContent() {
+    const {halls}= usePage().props;
     return (
         <section className="conf-step">
             <header
@@ -14,7 +16,7 @@ function PriceConfigurationContent({ halls }) {
                     Выберите зал для конфигурации:
                 </p>
                 <ul className="conf-step__selectors-box">
-                    {halls.map((hall) => (
+                    {halls.map((hall, index) => (
                         <li key={hall.id}>
                             <input
                                 type="radio"
@@ -37,6 +39,7 @@ function PriceConfigurationContent({ halls }) {
                         Цена, рублей
                         <input
                             type="text"
+                            name="price_standard"
                             className="conf-step__input"
                             placeholder="0"
                         />
@@ -50,9 +53,11 @@ function PriceConfigurationContent({ halls }) {
                         Цена, рублей
                         <input
                             type="text"
+                            name="price_vip"
                             className="conf-step__input"
                             placeholder="0"
                             value="350"
+                            // defaultValue={}
                         />
                     </label>
                     за{" "}
