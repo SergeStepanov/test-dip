@@ -24,7 +24,7 @@ export default function HallDeletePopup({ delHall }) {
 
         destroy(route("hall.destroy", data));
 
-        hendleClosePopupsBtn(e)
+        hendleClosePopupsBtn(e);
     }
 
     return (
