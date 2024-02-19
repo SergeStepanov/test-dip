@@ -53,7 +53,11 @@ class HallController extends Controller
      */
     public function update(HallRequest $request, Hall $hall)
     {
-        //
+        dd('up');
+        // $hall->update($request->validate());
+        // $result = Hall::findOfFail($hall);
+
+        // $result->update($request->validated());
     }
 
     /**
