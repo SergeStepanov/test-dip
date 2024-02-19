@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import HallManagementContent from "./SectionAdminPageContent/HallManagementContent";
 import ConfigurationHallsContent from "./SectionAdminPageContent/ConfigurationHallsContent";
@@ -8,7 +8,11 @@ import OpenSalesContent from "./SectionAdminPageContent/OpenSalesContent";
 
 export default function AdminPageContent({ halls, movies, ...props }) {
     const [delHall, setDelHall] = useState({});
-    const [isCheckedHall, setIsCheckedHall] = useState(0);
+    const [isCheckedHallId, setIsCheckedHallId] = useState(null);
+    // console.log(isCheckedHallId);
+    useEffect(() => {
+        setIsCheckedHallId(halls.length ? halls.at(-1)["id"] : null);
+    }, [halls]);
 
     return (
         <AuthenticatedLayout delHall={delHall}>
@@ -16,16 +20,22 @@ export default function AdminPageContent({ halls, movies, ...props }) {
             <HallManagementContent setDelHall={setDelHall} />
 
             {/* не сделано */}
-            <ConfigurationHallsContent isCheckedHall={isCheckedHall} />
+            <ConfigurationHallsContent
+                isCheckedHallId={isCheckedHallId}
+                setIsCheckedHallId={setIsCheckedHallId}
+            />
 
             {/* не сделано */}
-            <PriceConfigurationContent isCheckedHall={isCheckedHall} />
-
-            {/* не готово */}
-            <SessionGridContent movies={movies} />
+            <PriceConfigurationContent
+                isCheckedHallId={isCheckedHallId}
+                setIsCheckedHallId={setIsCheckedHallId}
+            />
 
             {/* не сделано */}
-            <OpenSalesContent hall={halls[isCheckedHall]} />
+            <SessionGridContent />
+
+            {/* не сделано */}
+            <OpenSalesContent isCheckedHallId={isCheckedHallId} />
         </AuthenticatedLayout>
     );
 }
