@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 function OpenSalesContent({ isCheckedHallId }) {
     const { halls } = usePage().props;
     const [currentHall, setCurrentHall] = useState({});
-    const { data, setData, patch } = useForm({
+    const { data, setData, post } = useForm({
+        _method: "PATCH",
         hall: "",
     });
 
@@ -20,7 +21,7 @@ function OpenSalesContent({ isCheckedHallId }) {
         currentHall.is_active == 0
             ? (currentHall.is_active = true)
             : (currentHall.is_active = false);
-            patch(route("hall.update", data));
+        post(route("hall.update", data));
         console.log(data);
     }
 
