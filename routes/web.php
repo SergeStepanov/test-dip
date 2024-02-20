@@ -39,12 +39,20 @@ Route::middleware('auth')->group(function () {
         'hall' => HallController::class,
         'movie' => MovieController::class,
     ]);
+    // Route::name('hall')->group(function () {
+    //     Route::post('/admin', [HallController::class, 'store'])->name('store');
+    //     Route::post('/admin', [HallController::class, 'update'])->name('update');
+    //     Route::delete('/admin', [HallController::class, 'destroy'])->name('destroy');
+    // });
+    // Route::name('movie')->group(function () {
+    //     Route::post('/admin', [MovieController::class, 'store'])->name('store');
+    // });
 });
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
 require __DIR__ . '/auth.php';
