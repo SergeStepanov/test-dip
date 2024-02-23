@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hall;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -12,6 +13,7 @@ class UserPageController extends Controller
     {
         return Inertia::render('User/UserHomeContent', [
             'phpVersion' => PHP_VERSION,
+            'halls' => Hall::where('is_admin'),
         ]);
     }
 }
