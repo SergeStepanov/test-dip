@@ -53,11 +53,9 @@ class HallController extends Controller
      */
     public function update(HallRequest $request, Hall $hall)
     {
-        dd('up');
-        // $hall->update($request->validate());
-        // $result = Hall::findOfFail($hall);
+        $hall->fill($request->validated());
 
-        // $result->update($request->validated());
+        $hall->save();
     }
 
     /**
@@ -66,5 +64,6 @@ class HallController extends Controller
     public function destroy(Hall $hall)
     {
         $hall->delete();
+        // $hall->truncate();
     }
 }
