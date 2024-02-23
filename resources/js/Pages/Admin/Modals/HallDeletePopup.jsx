@@ -11,12 +11,10 @@ export default function HallDeletePopup({ delHall }) {
         processing,
         errors,
         reset,
-    } = useForm({
-        hall: "",
-    });
+    } = useForm({});
 
     useEffect(() => {
-        setData("hall", delHall);
+        setData(delHall);
     }, [delHall]);
 
     function hendleSubmit(e) {
