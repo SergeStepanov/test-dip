@@ -51,9 +51,12 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Movie $movie)
+    public function update(MovieRequest $request, Movie $movie)
     {
-        //
+        $movie->fill($request->validated());
+
+        $movie->save();
+
     }
 
     /**
@@ -61,6 +64,8 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        // $hall->truncate();
+
     }
 }
