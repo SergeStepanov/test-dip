@@ -9,10 +9,16 @@ import OpenSalesContent from "./SectionAdminPageContent/OpenSalesContent";
 export default function AdminPageContent({ halls, movies, ...props }) {
     const [delHall, setDelHall] = useState({});
     const [isCheckedHallId, setIsCheckedHallId] = useState(null);
-    // console.log(isCheckedHallId);
+    const [currentHall, setCurrentHall] = useState({});
+
     useEffect(() => {
         setIsCheckedHallId(halls.length ? halls.at(-1)["id"] : null);
     }, [halls]);
+
+    useEffect(() => {
+        setCurrentHall(halls.find((el) => el.id == isCheckedHallId));
+        // console.log(currentHall);
+    }, [isCheckedHallId, currentHall]);
 
     return (
         <AuthenticatedLayout delHall={delHall}>
@@ -23,19 +29,21 @@ export default function AdminPageContent({ halls, movies, ...props }) {
             <ConfigurationHallsContent
                 isCheckedHallId={isCheckedHallId}
                 setIsCheckedHallId={setIsCheckedHallId}
+                currentHall={currentHall}
             />
 
             {/* не сделано */}
             <PriceConfigurationContent
                 isCheckedHallId={isCheckedHallId}
                 setIsCheckedHallId={setIsCheckedHallId}
+                currentHall={currentHall}
             />
 
             {/* не сделано */}
-            <SessionGridContent />
+            {/* <SessionGridContent /> */}
 
             {/* не сделано */}
-            <OpenSalesContent isCheckedHallId={isCheckedHallId} />
+            <OpenSalesContent currentHall={currentHall} setCurrentHall={setCurrentHall} />
         </AuthenticatedLayout>
     );
 }

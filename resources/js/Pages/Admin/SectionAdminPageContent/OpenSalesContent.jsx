@@ -2,32 +2,31 @@ import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 import { useForm, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-function OpenSalesContent({ isCheckedHallId }) {
-    const { halls } = usePage().props;
-    const [currentHall, setCurrentHall] = useState({});
-    const { data, setData, post } = useForm({
-        _method: "PATCH",
-        hall: "",
-    });
+function OpenSalesContent({ currentHall, setCurrentHall }) {
+    const { data, setData, patch: update } = useForm({});
 
     useEffect(() => {
-        setCurrentHall(halls.find((el) => el.id == isCheckedHallId));
+        setData(currentHall);
+    }, [currentHall]);
 
-        setData("hall", currentHall);
-    }, [isCheckedHallId, currentHall]);
+    function toggleActiv() {
+        setCurrentHall((prev) => {
+            prev, (prev.is_active = prev.is_active == 0 ? true : false);
+        });
+    }
 
     function hendleSubmit(e) {
         e.preventDefault();
-        currentHall.is_active == 0
-            ? (currentHall.is_active = true)
-            : (currentHall.is_active = false);
-        post(route("hall.update", data));
-        console.log(data);
+        toggleActiv();
+
+        update(route("hall.update", data));
+        console.log(data["hall"]);
     }
 
     return (
         <section className="conf-step">
             <header
+                id="update_hall"
                 className="conf-step__header conf-step__header_opened"
                 onClick={(evt) => hendleToggleHeaderSection(evt)}
             >
@@ -44,15 +43,16 @@ function OpenSalesContent({ isCheckedHallId }) {
                     <p className="conf-step__paragraph">
                         Всё готово, теперь можно:
                     </p>
-                    <button
-                        onClick={hendleSubmit}
-                        type="submit"
-                        className="conf-step__button conf-step__button-accent"
-                    >
-                        {currentHall.is_active == 0
-                            ? "Открыть продажу билетов"
-                            : "Приостановить продажу билетов"}
-                    </button>
+                    <form onSubmit={hendleSubmit}>
+                        <button
+                            type="submit"
+                            className="conf-step__button conf-step__button-accent"
+                        >
+                            {currentHall.is_active == 0
+                                ? "Открыть продажу билетов"
+                                : "Приостановить продажу билетов"}
+                        </button>
+                    </form>
                 </div>
             )}
         </section>
