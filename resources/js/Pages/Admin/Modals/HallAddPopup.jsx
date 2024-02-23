@@ -13,9 +13,9 @@ export default function HallAddPopup() {
     function hendleSubmit(e) {
         e.preventDefault();
 
-        post(route("hall.store"));
+        post(route("hall.store"), { onSuccess: () => hendleClosePopupsBtn(e) });
 
-        if (data.name.trim() !== "") hendleClosePopupsBtn(e);
+        // if (data.name.trim() !== "") hendleClosePopupsBtn(e);
     }
 
     return (
