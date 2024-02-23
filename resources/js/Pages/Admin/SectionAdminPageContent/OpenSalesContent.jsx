@@ -20,7 +20,6 @@ function OpenSalesContent({ currentHall, setCurrentHall }) {
         toggleActiv();
 
         update(route("hall.update", data));
-        console.log(data["hall"]);
     }
 
     return (
