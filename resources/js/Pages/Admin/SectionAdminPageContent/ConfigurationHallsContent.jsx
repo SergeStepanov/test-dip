@@ -1,7 +1,7 @@
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 import { usePage } from "@inertiajs/react";
 
-function ConfigurationHallsContent({ isCheckedHallId, setIsCheckedHallId }) {
+function ConfigurationHallsContent({ currentHall, setCurrentHall }) {
     const { halls } = usePage().props;
 
     return (
@@ -33,11 +33,9 @@ function ConfigurationHallsContent({ isCheckedHallId, setIsCheckedHallId }) {
                                     value={hall.name}
                                     data-id={hall.id}
                                     checked={
-                                        hall.id == isCheckedHallId ? true : false
+                                        hall.id == currentHall.id ? true : false
                                     }
-                                    onChange={(e) =>
-                                        setIsCheckedHallId(e.target.dataset.id)
-                                    }
+                                    onChange={() => setCurrentHall(hall)}
                                 />
                                 <span className="conf-step__selector">
                                     {hall.name}
@@ -45,11 +43,14 @@ function ConfigurationHallsContent({ isCheckedHallId, setIsCheckedHallId }) {
                             </li>
                         ))}
                     </ul>
-                    <p className="conf-step__paragraph">
-                        Укажите количество рядов и максимальное количество
-                        кресел в ряду:
-                    </p>
-                    {/* <div className="conf-step__legend">
+
+                    {currentHall && (
+                        <>
+                            <p className="conf-step__paragraph">
+                                Укажите количество рядов и максимальное
+                                количество кресел в ряду:
+                            </p>
+                            {/* <div className="conf-step__legend">
                     <label className="conf-step__label">
                         Рядов, шт
                         <input
@@ -84,7 +85,7 @@ function ConfigurationHallsContent({ isCheckedHallId, setIsCheckedHallId }) {
                         </p>
                     </div> */}
 
-                        {/* <div className="conf-step__hall">
+                            {/* <div className="conf-step__hall">
                         <div className="conf-step__hall-wrapper">
                             <div className="conf-step__row">
                                 <span className="conf-step__chair conf-step__chair_disabled"></span>
@@ -198,7 +199,7 @@ function ConfigurationHallsContent({ isCheckedHallId, setIsCheckedHallId }) {
                         </div>
                     </div> */}
 
-                        {/* <fieldset className="conf-step__buttons text-center">
+                            {/* <fieldset className="conf-step__buttons text-center">
                         <button className="conf-step__button conf-step__button-regular">
                             Отмена
                         </button>
@@ -208,6 +209,8 @@ function ConfigurationHallsContent({ isCheckedHallId, setIsCheckedHallId }) {
                             className="conf-step__button conf-step__button-accent"
                         />
                     </fieldset> */}
+                        </>
+                    )}
                 </div>
             )}
         </section>
