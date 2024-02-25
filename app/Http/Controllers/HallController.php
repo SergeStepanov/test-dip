@@ -53,6 +53,7 @@ class HallController extends Controller
      */
     public function update(HallRequest $request, Hall $hall)
     {
+        // dd($request->all());
         $hall->fill($request->validated());
 
         $hall->save();
