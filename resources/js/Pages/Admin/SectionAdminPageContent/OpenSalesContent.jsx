@@ -2,22 +2,19 @@ import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 import { useForm, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-function OpenSalesContent({ currentHall, setCurrentHall }) {
+function OpenSalesContent({ currentHall }) {
     const { data, setData, patch: update } = useForm({});
 
     useEffect(() => {
-        setData(currentHall);
-    }, [currentHall]);
-
-    function toggleActiv() {
-        setCurrentHall((prev) => {
-            prev, (prev.is_active = prev.is_active == 0 ? true : false);
+        setData({
+            id: currentHall.id,
+            name: currentHall.name,
+            is_active: currentHall.is_active == 0 ? true : false,
         });
-    }
+    }, [currentHall]);
 
     function hendleSubmit(e) {
         e.preventDefault();
-        toggleActiv();
 
         update(route("hall.update", data));
     }
