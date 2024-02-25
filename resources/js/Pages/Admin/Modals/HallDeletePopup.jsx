@@ -17,7 +17,7 @@ export default function HallDeletePopup({ delHall }) {
         setData(delHall);
     }, [delHall]);
 
-    function hendleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
         destroy(route("hall.destroy", data));
@@ -42,7 +42,7 @@ export default function HallDeletePopup({ delHall }) {
                         </h2>
                     </div>
                     <div className="popup__wrapper">
-                        <form onSubmit={hendleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <p className="conf-step__paragraph">
                                 Вы действительно хотите удалить зал{" "}
                                 <span>{delHall.name}</span>?

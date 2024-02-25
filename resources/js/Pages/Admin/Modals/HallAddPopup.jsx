@@ -10,7 +10,7 @@ export default function HallAddPopup() {
         name: "",
     });
 
-    function hendleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
         post(route("hall.store"), { onSuccess: () => hendleClosePopupsBtn(e) });
@@ -35,7 +35,7 @@ export default function HallAddPopup() {
                         </h2>
                     </div>
                     <div className="popup__wrapper">
-                        <form onSubmit={hendleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <InputLabel
                                 htmlFor="name"
                                 className="conf-step__label conf-step__label-fullsize"
