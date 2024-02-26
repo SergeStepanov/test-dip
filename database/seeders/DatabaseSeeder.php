@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             HallSeeder::class,
             MovieSeeder::class,
+            SeatSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
