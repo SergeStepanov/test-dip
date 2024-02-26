@@ -12,23 +12,33 @@ function HallManagementContent({ setDelHall }) {
                 <h2 className="conf-step__title">Управление залами</h2>
             </header>
 
-            <div className="conf-step__wrapper">
-                <p className="conf-step__paragraph">Доступные залы:</p>
-                <ul className="conf-step__list">
-                    {halls.map((hall) => (
-                        <li key={hall.id}>
-                            {hall.name}
-                            <button
-                                className="conf-step__button conf-step__button-trash"
-                                onClick={() => {
-                                    setDelHall(hall);
+            {halls.length === 0 && (
+                <div className="conf-step__wrapper">
+                    <p className="conf-step__paragraph">Добавьте зал.</p>
+                </div>
+            )}
 
-                                    openPopup("delete_hall_popup");
-                                }}
-                            ></button>
-                        </li>
-                    ))}
-                </ul>
+            <div className="conf-step__wrapper">
+                {halls.length !== 0 && (
+                    <>
+                        <p className="conf-step__paragraph">Доступные залы:</p>
+                        <ul className="conf-step__list">
+                            {halls.map((hall) => (
+                                <li key={hall.id}>
+                                    {hall.name}
+                                    <button
+                                        className="conf-step__button conf-step__button-trash"
+                                        onClick={() => {
+                                            setDelHall(hall);
+
+                                            openPopup("delete_hall_popup");
+                                        }}
+                                    ></button>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
 
                 <button
                     className="conf-step__button conf-step__button-accent"

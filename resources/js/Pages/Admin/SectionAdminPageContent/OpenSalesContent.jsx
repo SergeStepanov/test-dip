@@ -28,13 +28,13 @@ function OpenSalesContent({ currentHall }) {
             >
                 <h2 className="conf-step__title">Открыть продажи</h2>
             </header>
-            {!currentHall && (
+            {!currentHall.id && (
                 <div className="conf-step__wrapper text-center">
                     <p className="conf-step__paragraph">Добавьте зал.</p>
                 </div>
             )}
 
-            {currentHall && (
+            {currentHall.id && (
                 <div className="conf-step__wrapper text-center">
                     <p className="conf-step__paragraph">
                         Всё готово, теперь можно:
