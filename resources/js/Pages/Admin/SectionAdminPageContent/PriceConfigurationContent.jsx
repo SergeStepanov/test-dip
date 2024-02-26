@@ -1,8 +1,13 @@
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 import { useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function PriceConfigurationContent({ currentHall, setCurrentHall }) {
+function PriceConfigurationContent({
+    currentHall,
+    setCurrentHall,
+    handleChange,
+    prevStateHall,
+}) {
     const { halls } = usePage().props;
     const { data, setData, patch: update } = useForm({});
 
@@ -15,19 +20,14 @@ function PriceConfigurationContent({ currentHall, setCurrentHall }) {
         });
     }, [currentHall]);
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setCurrentHall((prev) => {
-            prev, (prev[name] = value);
-        });
-        // console.log(typeof value);
+    function cancelChanges() {
+        setCurrentHall(prevStateHall);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        // update(route("hall.update", data));
-        console.log(data);
+        update(route("hall.update", data));
     }
 
     return (
@@ -77,52 +77,60 @@ function PriceConfigurationContent({ currentHall, setCurrentHall }) {
                             <p className="conf-step__paragraph">
                                 Установите цены для типов кресел:
                             </p>
-                            <div className="conf-step__legend">
-                                <label className="conf-step__label">
-                                    Цена, рублей
-                                    <input
-                                        type="number"
-                                        name="price_standard"
-                                        className="conf-step__input"
-                                        placeholder="0"
-                                        min={0}
-                                        value={currentHall.price_standard}
-                                        onChange={(e) => handleChange(e)}
-                                    />
-                                </label>
-                                за{" "}
-                                <span className="conf-step__chair conf-step__chair_standart"></span>{" "}
-                                обычные кресла
-                            </div>
-                            {/* <div className="conf-step__legend">
-                                <label className="conf-step__label">
-                                    Цена, рублей
-                                    <input
-                                        type="number"
-                                        name="price_vip"
-                                        className="conf-step__input"
-                                        placeholder="0"
-                                        min={0}
-                                        value={currentHall.price_vip}
-                                        onChange={(e) => handleChange(e)}
-                                    />
-                                </label>
-                                за{" "}
-                                <span className="conf-step__chair conf-step__chair_vip"></span>{" "}
-                                VIP кресла
-                            </div> */}
 
-                            {/* <fieldset className="conf-step__buttons text-center">
-                                <button className="conf-step__button conf-step__button-regular">
-                                    Отмена
-                                </button>
-                                <input
-                                    type="submit"
-                                    value="Сохранить"
-                                    className="conf-step__button conf-step__button-accent"
-                                    onSubmit={hendleSubmit}
-                                />
-                            </fieldset> */}
+                            <form onSubmit={handleSubmit}>
+                                <div className="conf-step__legend">
+                                    <label className="conf-step__label">
+                                        Цена, рублей
+                                        <input
+                                            type="number"
+                                            name="price_standard"
+                                            className="conf-step__input"
+                                            placeholder="0"
+                                            min={0}
+                                            value={
+                                                currentHall.price_standard || ""
+                                            }
+                                            onChange={(e) => handleChange(e)}
+                                        />
+                                    </label>
+                                    за{" "}
+                                    <span className="conf-step__chair conf-step__chair_standart"></span>{" "}
+                                    обычные кресла
+                                </div>
+                                <div className="conf-step__legend">
+                                    <label className="conf-step__label">
+                                        Цена, рублей
+                                        <input
+                                            type="number"
+                                            name="price_vip"
+                                            className="conf-step__input"
+                                            placeholder="0"
+                                            min={0}
+                                            value={currentHall.price_vip || ""}
+                                            onChange={(e) => handleChange(e)}
+                                        />
+                                    </label>
+                                    за{" "}
+                                    <span className="conf-step__chair conf-step__chair_vip"></span>{" "}
+                                    VIP кресла
+                                </div>
+
+                                <fieldset className="conf-step__buttons text-center">
+                                    <button
+                                        type="button"
+                                        className="conf-step__button conf-step__button-regular"
+                                        onClick={cancelChanges}
+                                    >
+                                        Отмена
+                                    </button>
+                                    <input
+                                        type="submit"
+                                        value="Сохранить"
+                                        className="conf-step__button conf-step__button-accent"
+                                    />
+                                </fieldset>
+                            </form>
                         </>
                     )}
                 </div>

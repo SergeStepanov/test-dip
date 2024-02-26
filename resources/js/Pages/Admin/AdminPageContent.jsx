@@ -8,17 +8,31 @@ import OpenSalesContent from "./SectionAdminPageContent/OpenSalesContent";
 
 export default function AdminPageContent({ halls, movies, ...props }) {
     const [delHall, setDelHall] = useState({});
-    const [isCheckedHallId, setIsCheckedHallId] = useState(null);
     const [currentHall, setCurrentHall] = useState({});
+    const [prevStateHall, setPrevStateHall] = useState({});
+
+    // useEffect(() => {
+    //     setCurrentHall(halls.length ? halls.at(0) : null);
+    // }, []);
 
     useEffect(() => {
-        setIsCheckedHallId(halls.length ? halls.at(-1)["id"] : null);
+        setCurrentHall(halls.length ? halls.at(-1) : {});
     }, [halls]);
 
+    // useEffect(() => {
+    //     setCurrentHall(halls.find((el) => el.id == currentHall.id));
+    // }, [currentHall.id]);
+
+    // для кнопки отмена
     useEffect(() => {
-        setCurrentHall(halls.find((el) => el.id == isCheckedHallId));
-        // console.log(currentHall);
-    }, [isCheckedHallId, currentHall]);
+        setPrevStateHall(currentHall);
+    }, [currentHall.id]);
+
+    // for onChange
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setCurrentHall((prev) => ({ ...prev, [name]: value }));
+    }
 
     return (
         <AuthenticatedLayout delHall={delHall}>
@@ -27,23 +41,25 @@ export default function AdminPageContent({ halls, movies, ...props }) {
 
             {/* не сделано */}
             <ConfigurationHallsContent
-                isCheckedHallId={isCheckedHallId}
-                setIsCheckedHallId={setIsCheckedHallId}
                 currentHall={currentHall}
+                setCurrentHall={setCurrentHall}
+                handleChange={handleChange}
+                prevStateHall={prevStateHall}
             />
 
             {/* не сделано */}
             <PriceConfigurationContent
-                isCheckedHallId={isCheckedHallId}
-                setIsCheckedHallId={setIsCheckedHallId}
                 currentHall={currentHall}
+                setCurrentHall={setCurrentHall}
+                handleChange={handleChange}
+                prevStateHall={prevStateHall}
             />
 
             {/* не сделано */}
             {/* <SessionGridContent /> */}
 
-            {/* не сделано */}
-            <OpenSalesContent currentHall={currentHall} setCurrentHall={setCurrentHall} />
+            {/* ? сделано */}
+            <OpenSalesContent currentHall={currentHall} />
         </AuthenticatedLayout>
     );
 }
