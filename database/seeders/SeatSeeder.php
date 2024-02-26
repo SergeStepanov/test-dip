@@ -13,7 +13,7 @@ class SeatSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($seat = 1; $seat < 36; $seat++) {
+        for ($seat = 1; $seat <= 36; $seat++) {
             if ($seat == 19 || $seat == 20 || $seat == 21 || $seat == 22) {
                 $status = 'vip';
             } elseif ($seat == 1 || $seat == 6) {
@@ -29,7 +29,7 @@ class SeatSeeder extends Seeder
             ]);
         }
 
-        for ($seat = 1; $seat < 150; $seat++) {
+        for ($seat = 1; $seat <= 150; $seat++) {
             if ($seat == 19 || $seat == 20 || $seat == 21 || $seat == 22) {
                 $status = 'vip';
             } elseif ($seat == 70 || $seat == 96 || $seat == 111 || $seat == 147) {
@@ -41,11 +41,11 @@ class SeatSeeder extends Seeder
             DB::table('seats')->insert([
                 'number' => $seat,
                 'status' => $status,
-                'hall_id' => 3,
+                'hall_id' => 2,
             ]);
         }
 
-        for ($seat = 1; $seat < 99; $seat++) {
+        for ($seat = 1; $seat <= 99; $seat++) {
             if ($seat == 60 || $seat == 20 || $seat == 21 || $seat == 72) {
                 $status = 'vip';
             } elseif ($seat == 2 || $seat == 26 || $seat == 41 || $seat == 69) {
