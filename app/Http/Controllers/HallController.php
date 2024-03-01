@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HallRequest;
 use App\Models\Hall;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 
 class HallController extends Controller
@@ -29,7 +30,17 @@ class HallController extends Controller
      */
     public function store(HallRequest $request): void
     {
-        Hall::create($request->validated());
+        $hall = Hall::create($request->validated());
+        for ($ind = 0; $ind < 16; $ind++) {
+            $seat = [
+                'number' => $ind + 1,
+                'status' => 'standart',
+                'hall_id' => $hall->id,
+            ];
+            // dd($seat);
+
+            Seat::create($seat);
+        }
     }
 
     /**
