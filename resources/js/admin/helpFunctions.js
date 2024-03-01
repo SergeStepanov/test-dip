@@ -16,5 +16,24 @@ export function hendleClosePopupsBtn(evt) {
 
 // open popup
 export function openPopup(idPopup) {
-    document.querySelector(`#${idPopup}`).classList.add('active');
+    document.querySelector(`#${idPopup}`).classList.add("active");
+}
+
+// переключение статуса кресел в зале
+export function toggleStatusSeat(status) {
+    switch (status) {
+        case "disabled":
+            status = "standart";
+            break;
+        case "standart":
+            status = "vip";
+            break;
+        case "vip":
+            status = "disabled";
+            break;
+
+        default:
+            break;
+    }
+    console.log(status);
 }
