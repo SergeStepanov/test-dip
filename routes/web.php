@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SeatController;
 use App\Http\Controllers\UserPageController;
 use App\Models\Hall;
 use App\Models\Movie;
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'hall' => HallController::class,
         'movie' => MovieController::class,
+        'seat' => SeatController::class,
     ]);
     // Route::name('hall')->group(function () {
     //     Route::post('/admin', [HallController::class, 'store'])->name('store');
