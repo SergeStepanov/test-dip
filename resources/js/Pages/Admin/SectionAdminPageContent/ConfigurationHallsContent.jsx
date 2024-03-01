@@ -1,8 +1,35 @@
+import SchemeHall from "@/Components/SchemeHall";
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
-import { usePage } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 
-function ConfigurationHallsContent({ currentHall, setCurrentHall }) {
+function ConfigurationHallsContent({
+    currentHall,
+    setCurrentHall,
+    handleChange,
+    prevStateHall,
+}) {
     const { halls } = usePage().props;
+    const { data, setData, patch: update } = useForm({});
+
+    useEffect(() => {
+        setData({
+            id: currentHall.id,
+            name: currentHall.name,
+            rows: currentHall.rows,
+            cols: currentHall.cols,
+        });
+    }, [currentHall]);
+
+    function cancelChanges() {
+        setCurrentHall(prevStateHall);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        update(route("hall.update", data));
+    }
 
     return (
         <section className="conf-step">
@@ -50,165 +77,68 @@ function ConfigurationHallsContent({ currentHall, setCurrentHall }) {
                                 Укажите количество рядов и максимальное
                                 количество кресел в ряду:
                             </p>
-                            {/* <div className="conf-step__legend">
-                    <label className="conf-step__label">
-                        Рядов, шт
-                        <input
-                            type="text"
-                            className="conf-step__input"
-                            placeholder="10"
-                        />
-                    </label>
-                    <span className="multiplier">x</span>
-                    <label className="conf-step__label">
-                        Мест, шт
-                        <input
-                            type="text"
-                            className="conf-step__input"
-                            placeholder="8"
-                        />
-                    </label>
-                    </div>
-                    <p className="conf-step__paragraph">
-                        Теперь вы можете указать типы кресел на схеме зала:
-                    </p>
-                    <div className="conf-step__legend">
-                        <span className="conf-step__chair conf-step__chair_standart"></span>{" "}
-                        — обычные кресла
-                        <span className="conf-step__chair conf-step__chair_vip"></span>{" "}
-                        — VIP кресла
-                        <span className="conf-step__chair conf-step__chair_disabled"></span>{" "}
-                        — заблокированные (нет кресла)
-                        <p className="conf-step__hint">
-                            Чтобы изменить вид кресла, нажмите по нему левой кнопкой
-                            мыши
-                        </p>
-                    </div> */}
-
-                            {/* <div className="conf-step__hall">
-                        <div className="conf-step__hall-wrapper">
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
+                            <div className="conf-step__legend">
+                                <label className="conf-step__label">
+                                    Рядов, шт
+                                    <input
+                                        type="number"
+                                        name="rows"
+                                        className="conf-step__input"
+                                        placeholder="10"
+                                        min={0}
+                                        value={currentHall.rows || ""}
+                                        onChange={(e) => handleChange(e)}
+                                    />
+                                </label>
+                                <span className="multiplier">x</span>
+                                <label className="conf-step__label">
+                                    Мест, шт
+                                    <input
+                                        type="number"
+                                        name="cols"
+                                        className="conf-step__input"
+                                        placeholder="8"
+                                        min={0}
+                                        value={currentHall.cols || ""}
+                                        onChange={(e) => handleChange(e)}
+                                    />
+                                </label>
+                            </div>
+                            <p className="conf-step__paragraph">
+                                Теперь вы можете указать типы кресел на схеме
+                                зала:
+                            </p>
+                            <div className="conf-step__legend">
+                                <span className="conf-step__chair conf-step__chair_standart"></span>{" "}
+                                — обычные кресла
+                                <span className="conf-step__chair conf-step__chair_vip"></span>{" "}
+                                — VIP кресла
+                                <span className="conf-step__chair conf-step__chair_disabled"></span>{" "}
+                                — заблокированные (нет кресла)
+                                <p className="conf-step__hint">
+                                    Чтобы изменить вид кресла, нажмите по нему
+                                    левой кнопкой мыши
+                                </p>
                             </div>
 
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
+                            <SchemeHall currentHall={currentHall} />
 
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_vip"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_disabled"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                            </div>
-
-                            <div className="conf-step__row">
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                                <span className="conf-step__chair conf-step__chair_standart"></span>
-                            </div>
-                        </div>
-                    </div> */}
-
-                            {/* <fieldset className="conf-step__buttons text-center">
-                        <button className="conf-step__button conf-step__button-regular">
-                            Отмена
-                        </button>
-                        <input
-                            type="submit"
-                            value="Сохранить"
-                            className="conf-step__button conf-step__button-accent"
-                        />
-                    </fieldset> */}
+                            <form onSubmit={handleSubmit}>
+                                <fieldset className="conf-step__buttons text-center">
+                                    <button
+                                        type="button"
+                                        className="conf-step__button conf-step__button-regular"
+                                        onClick={cancelChanges}
+                                    >
+                                        Отмена
+                                    </button>
+                                    <input
+                                        type="submit"
+                                        value="Сохранить"
+                                        className="conf-step__button conf-step__button-accent"
+                                    />
+                                </fieldset>
+                            </form>
                         </>
                     )}
                 </div>

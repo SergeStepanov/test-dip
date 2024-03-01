@@ -12,7 +12,7 @@ class SeatController extends Controller
      */
     public function index()
     {
-        //
+        return Seat::all();
     }
 
     /**

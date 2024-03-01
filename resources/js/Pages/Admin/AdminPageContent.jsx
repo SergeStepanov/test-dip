@@ -11,17 +11,11 @@ export default function AdminPageContent({ halls, movies, ...props }) {
     const [currentHall, setCurrentHall] = useState({});
     const [prevStateHall, setPrevStateHall] = useState({});
 
-    // useEffect(() => {
-    //     setCurrentHall(halls.length ? halls.at(0) : null);
-    // }, []);
-
+    // console.log(halls);
+    // console.log(currentHall.seats);
     useEffect(() => {
         setCurrentHall(halls.length ? halls.at(-1) : {});
-    }, [halls]);
-
-    // useEffect(() => {
-    //     setCurrentHall(halls.find((el) => el.id == currentHall.id));
-    // }, [currentHall.id]);
+    }, [halls.length]);
 
     // для кнопки отмена
     useEffect(() => {
@@ -56,7 +50,7 @@ export default function AdminPageContent({ halls, movies, ...props }) {
             />
 
             {/* не сделано */}
-            {/* <SessionGridContent /> */}
+            <SessionGridContent />
 
             {/* ? сделано */}
             <OpenSalesContent currentHall={currentHall} />
