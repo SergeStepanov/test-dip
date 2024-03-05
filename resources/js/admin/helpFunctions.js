@@ -11,29 +11,24 @@ export function hendleClosePopupsBtn(evt) {
     const popup = document.querySelector(".active");
     if (!popup) return;
 
-    popup.classList.remove("active");
+    popup.classList.toggle("active");
 }
 
 // open popup
 export function openPopup(idPopup) {
-    document.querySelector(`#${idPopup}`).classList.add("active");
+    document.querySelector(`#${idPopup}`).classList.toggle("active");
 }
 
 // переключение статуса кресел в зале
 export function toggleStatusSeat(status) {
     switch (status) {
         case "disabled":
-            status = "standart";
-            break;
+            return "standart";
         case "standart":
-            status = "vip";
-            break;
+            return "vip";
         case "vip":
-            status = "disabled";
-            break;
-
+            return "disabled";
         default:
-            break;
+            return;
     }
-    console.log(status);
 }
