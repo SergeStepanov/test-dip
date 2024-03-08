@@ -1,7 +1,7 @@
 import SchemeHall from "@/Components/SchemeHall";
 import { hendleToggleHeaderSection } from "@/admin/helpFunctions";
 import { useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ConfigurationHallsContent({
     currentHall,
@@ -11,6 +11,25 @@ function ConfigurationHallsContent({
 }) {
     const { halls } = usePage().props;
     const { data, setData, patch: update } = useForm({});
+    const {
+        data: dataSeats,
+        setData: setDataSeats,
+        patch: upd,
+    } = useForm({ id: null, data: [] });
+    const [seats, setSeats] = useState([]);
+
+    function cancelChanges() {
+        setCurrentHall(prevStateHall);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        // getSeatsArr()
+        console.log(dataSeats.data);
+
+        // update(route("hall.update", data));
+        // upd(route("seat.update", dataSeats));
+    }
 
     useEffect(() => {
         setData({
@@ -19,17 +38,20 @@ function ConfigurationHallsContent({
             rows: currentHall.rows,
             cols: currentHall.cols,
         });
+
+        setDataSeats((prev) => ({ ...prev, ["id"]: currentHall.id }));
+
+        Object.keys(currentHall).map((key, index) => {
+            if (key === "seats") {
+                setSeats(Array.from(currentHall[key]));
+                return;
+            }
+        });
     }, [currentHall]);
 
-    function cancelChanges() {
-        setCurrentHall(prevStateHall);
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        update(route("hall.update", data));
-    }
+    useEffect(() => {
+        setDataSeats((prev) => ({ ...prev, ["data"]: seats }));
+    }, [seats]);
 
     return (
         <section className="conf-step">
@@ -121,7 +143,11 @@ function ConfigurationHallsContent({
                                 </p>
                             </div>
 
-                            <SchemeHall currentHall={currentHall} />
+                            <SchemeHall
+                                currentHall={currentHall}
+                                seats={seats}
+                                setSeats={setSeats}
+                            />
 
                             <form onSubmit={handleSubmit}>
                                 <fieldset className="conf-step__buttons text-center">
