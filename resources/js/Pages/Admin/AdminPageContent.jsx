@@ -17,6 +17,10 @@ export default function AdminPageContent({ halls, movies, ...props }) {
         setCurrentHall(halls.length ? halls.at(-1) : {});
     }, [halls.length]);
 
+    useEffect(() => {
+        setCurrentHall(halls.length ? halls.at(-1) : {});
+    }, [halls]);
+
     // для кнопки отмена
     useEffect(() => {
         setPrevStateHall(currentHall);
