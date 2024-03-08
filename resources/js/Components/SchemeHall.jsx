@@ -1,30 +1,28 @@
 import { toggleStatusSeat } from "@/admin/helpFunctions";
-import classNames from "classnames";
 import { useEffect, useState } from "react";
+import Seat from "./Seat";
 
-export default function SchemeHall({ currentHall }) {
-    const { id, rows, cols, seats } = currentHall;
-    const [seatsArr, setSeatsArr] = useState([]);
+export default function SchemeHall({ currentHall, seats, setSeats }) {
+    const { id, rows, cols } = currentHall;
+    const [shemeRows, setShemeRows] = useState([]);
 
-    // useEffect(() => {
-    //     // Object.keys(currentHall).map((key, index) => {
-    //     //     if (key === "seats") {
-    //     //         setSeatsArr(currentHall[key]);
-    //     //         // console.log(currentHall[key]);
-    //     //         return;
-    //     //     }
-    //     // });
-    //     setSeatsArr(seats);
-    // }, [id]);
+    function handleClick(e) {
+        let number = e.target.dataset.number;
+        let status = e.target.dataset.status;
+        let indSeat = seats.findIndex((item) => item.number == number);
+        seats[indSeat].status = toggleStatusSeat(status);
+        // console.log(number, seats[indSeat]);
+        // console.log(e.target);
+    }
 
-    const rowSeats = () => {
+    function rowSeats() {
         let arr = [];
         let next = 0;
         for (let row = 0; row < rows; row++) {
             arr[row] = [];
             for (let col = 0; col < cols; col++) {
+                if (!seats) return;
                 if (!seats[next]) {
-                    // next++;
                     seats[next] = {
                         number: next + 1,
                         status: "standart",
@@ -35,31 +33,31 @@ export default function SchemeHall({ currentHall }) {
                 next++;
             }
         }
+        if (seats.length > next) {
+            seats.splice(next);
+        }
         return arr;
-    };
+    }
 
-    const classSeat = ({ status }) =>
-        classNames("conf-step__chair", {
-            "conf-step__chair_disabled": status === "disabled",
-            "conf-step__chair_vip": status === "vip",
-            "conf-step__chair_standart": status || "",
-        });
+    useEffect(() => {
+        setShemeRows(rowSeats());
+    }, [id, seats]);
 
     return (
         <div className="conf-step__hall">
             <div className="conf-step__hall-wrapper">
-                {console.log(rowSeats())}
-                {rowSeats().map((row, index) => (
+                {console.log(seats, shemeRows, currentHall.seats)}
+
+                {shemeRows.map((row, index) => (
                     <div className="conf-step__row" key={index}>
                         {row.map((seat, ind) => (
-                            <span
-                                className={classSeat(seat)}
+                            <Seat
                                 key={ind}
-                                data-status={seat.status}
-                                data-number={seat.number}
-                                data-hall-id={id}
-                                onClick={() => toggleStatusSeat(seat.status)}
-                            ></span>
+                                status={seat.status}
+                                number={seat.number}
+                                id={id}
+                                handleClick={handleClick}
+                            />
                         ))}
                     </div>
                 ))}
