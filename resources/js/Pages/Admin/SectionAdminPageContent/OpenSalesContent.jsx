@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 function OpenSalesContent({ currentHall }) {
     const { data, setData, patch: update } = useForm({});
+    const [isActive, setIsActive] = useState(0);
 
     useEffect(() => {
         setData({
@@ -12,6 +13,10 @@ function OpenSalesContent({ currentHall }) {
             is_active: currentHall.is_active == 0 ? true : false,
         });
     }, [currentHall]);
+
+    useEffect(() => {
+        setIsActive(currentHall.is_active);
+    }, [currentHall.is_active]);
 
     function hendleSubmit(e) {
         e.preventDefault();
@@ -44,7 +49,7 @@ function OpenSalesContent({ currentHall }) {
                             type="submit"
                             className="conf-step__button conf-step__button-accent"
                         >
-                            {currentHall.is_active == 0
+                            {isActive == 0
                                 ? "Открыть продажу билетов"
                                 : "Приостановить продажу билетов"}
                         </button>
