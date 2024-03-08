@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeatRequest;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,10 @@ class SeatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SeatRequest $request)
     {
-        //
+        // dd($request);
+        Seat::create($request->validated());
     }
 
     /**
@@ -52,7 +54,7 @@ class SeatController extends Controller
      */
     public function update(Request $request, Seat $seat)
     {
-        //
+        dd($request->all());
     }
 
     /**
