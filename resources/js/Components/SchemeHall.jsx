@@ -36,7 +36,7 @@ export default function SchemeHall({ currentHall, seats, setSeats }) {
     return (
         <div className="conf-step__hall">
             <div className="conf-step__hall-wrapper">
-                {console.log(seats, shemeRows)}
+                {/* {console.log(seats, shemeRows)} */}
 
                 {shemeRows &&
                     shemeRows.map((row, index) => (
