@@ -12,19 +12,25 @@ export default function AdminPageContent({ halls, movies, ...props }) {
     const [prevStateHall, setPrevStateHall] = useState({});
 
     // console.log(halls);
-    // console.log(currentHall.seats);
+    // console.log(currentHall.seats, prevStateHall.seats);
     useEffect(() => {
         setCurrentHall(halls.length ? halls.at(-1) : {});
     }, [halls.length]);
 
     useEffect(() => {
         setCurrentHall(halls.length ? halls.at(-1) : {});
+        // setPrevStateHall(structuredClone(currentHall));
     }, [halls]);
 
     // для кнопки отмена
     useEffect(() => {
-        setPrevStateHall(currentHall);
+        setPrevStateHall(structuredClone(currentHall));
     }, [currentHall.id]);
+
+    // useEffect(() => {
+    //     // console.log(currentHall.seats, prevStateHall.seats);
+    //     console.log(currentHall, prevStateHall);
+    // });
 
     // for onChange
     function handleChange(e) {

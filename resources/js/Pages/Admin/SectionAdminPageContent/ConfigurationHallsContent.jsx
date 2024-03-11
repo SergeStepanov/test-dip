@@ -16,10 +16,22 @@ function ConfigurationHallsContent({
         setData: setDataSeats,
         patch: upd,
     } = useForm({ id: null, data: [] });
+
     const [seats, setSeats] = useState([]);
 
     function cancelChanges() {
         setCurrentHall(prevStateHall);
+    }
+
+    function seatsArr() {
+        let arr = [];
+        let obj = structuredClone(currentHall);
+        Object.keys(obj).map((key, index) => {
+            if (key === "seats") {
+                arr = obj[key].slice();
+            }
+        });
+        return arr;
     }
 
     function handleSubmit(e) {
@@ -40,14 +52,11 @@ function ConfigurationHallsContent({
         });
 
         setDataSeats((prev) => ({ ...prev, ["id"]: currentHall.id }));
-
-        Object.keys(currentHall).map((key, index) => {
-            if (key === "seats") {
-                setSeats(Array.from(currentHall[key]));
-                return;
-            }
-        });
     }, [currentHall]);
+
+    useEffect(() => {
+        setSeats(seatsArr());
+    }, [currentHall.id, currentHall.seats]);
 
     useEffect(() => {
         setDataSeats((prev) => ({ ...prev, ["data"]: seats }));
