@@ -36,11 +36,13 @@ function ConfigurationHallsContent({
 
     function handleSubmit(e) {
         e.preventDefault();
-        // getSeatsArr()
-        console.log(dataSeats.data);
+        // if () {
+        //     return;
+        // }
+        // console.log(dataSeats.data, data);
 
-        // update(route("hall.update", data));
-        // upd(route("seat.update", dataSeats));
+        update(route("hall.update", data));
+        upd(route("seat.update", dataSeats));
     }
 
     useEffect(() => {

@@ -52,9 +52,22 @@ class SeatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Seat $seat)
+    public function update(Request $request, int $id)
     {
-        dd($request->all());
+        $seatsReq = $request->input('data');
+        // $seatsTable = Seat::where('hall_id', $id)->get();
+
+        foreach ($seatsReq as $value) {
+            // dd($value['status']);
+
+            Seat:: updateOrCreate([
+                'hall_id' => $id,
+                'number' => $value['number'],
+            ], [
+                'status' => $value['status'],
+            ]);
+        }
+        // dd($seatsReq);
     }
 
     /**
