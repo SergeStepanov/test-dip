@@ -13,7 +13,7 @@ class UserPageController extends Controller
     {
         return Inertia::render('User/UserHomeContent', [
             'phpVersion' => PHP_VERSION,
-            'halls' => Hall::where('is_active', 1)->get(),
+            'halls' => Hall::where('is_active', 1)->with('seats')->get(),
         ]);
     }
 }

@@ -1,7 +1,6 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 
 export default function HallPageContent({ halls }) {
-    console.log(halls);
     return (
         <GuestLayout>
             <main>

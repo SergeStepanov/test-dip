@@ -1,12 +1,19 @@
 import HeaderUser from "@/Components/HeaderUser";
+import NavBar from "@/Components/NavBar";
+import NavLink from "@/Components/NavLink";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
-export default function UserHomeContent({ auth }) {
+export default function UserHomeContent({ halls, ...props }) {
     return (
         <GuestLayout>
+            {/* {console.log(halls)}
+            {console.log(props)} */}
+
+            <NavBar />
+
             <nav className="page-nav">
-                <a className="page-nav__day page-nav__day_today" href="#">
+                <a className="page-nav__day page-nav__day_today page-nav__day_chosen" href="#">
                     <span className="page-nav__day-week">Пн</span>
                     <span className="page-nav__day-number">31</span>
                 </a>
@@ -14,7 +21,7 @@ export default function UserHomeContent({ auth }) {
                     <span className="page-nav__day-week">Вт</span>
                     <span className="page-nav__day-number">1</span>
                 </a>
-                <a className="page-nav__day page-nav__day_chosen" href="#">
+                <a className="page-nav__day " href="#">
                     <span className="page-nav__day-week">Ср</span>
                     <span className="page-nav__day-number">2</span>
                 </a>
@@ -173,7 +180,9 @@ export default function UserHomeContent({ auth }) {
                                 <span className="movie__data-duration">
                                     96 минут
                                 </span>
-                                <span className="movie__data-origin">Франция</span>
+                                <span className="movie__data-origin">
+                                    Франция
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -181,22 +190,34 @@ export default function UserHomeContent({ auth }) {
                         <h3 className="movie-seances__hall-title">Зал 1</h3>
                         <ul className="movie-seances__list">
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     10:20
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     14:10
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     18:40
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     22:00
                                 </a>
                             </li>
@@ -206,32 +227,50 @@ export default function UserHomeContent({ auth }) {
                         <h3 className="movie-seances__hall-title">Зал 2</h3>
                         <ul className="movie-seances__list">
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     11:15
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     14:40
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     16:00
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     18:30
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     21:00
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     23:30
                                 </a>
                             </li>
@@ -272,57 +311,90 @@ export default function UserHomeContent({ auth }) {
                         <h3 className="movie-seances__hall-title">Зал 1</h3>
                         <ul className="movie-seances__list">
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     09:00
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     10:10
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     12:55
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     14:15
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     14:50
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     16:30
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     18:00
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     18:50
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     19:50
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     20:55
                                 </a>
                             </li>
                             <li className="movie-seances__time-block">
-                                <a className="movie-seances__time" href="hall.html">
+                                <a
+                                    className="movie-seances__time"
+                                    href="hall.html"
+                                >
                                     22:00
                                 </a>
                             </li>
