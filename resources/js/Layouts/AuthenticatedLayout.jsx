@@ -33,7 +33,7 @@ export default function Authenticated({ children, delHall }) {
                         Идём<span>в</span>кино
                     </h1>
                     <span className="page-header__subtitle">
-                        Администраторррская
+                        Администраторская
                     </span>
                 </div>
                 <div>
