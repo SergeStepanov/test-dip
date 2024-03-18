@@ -18,7 +18,13 @@ export default function AdminPageContent({ halls, movies, ...props }) {
     }, [halls.length]);
 
     useEffect(() => {
-        setCurrentHall(halls.length ? halls.at(-1) : {});
+        // setCurrentHall(halls.length ? halls.at(-1) : {});
+        setCurrentHall(
+            (prev) =>
+                (prev = halls.length
+                    ? halls.find((el) => el.id == prev.id)
+                    : {})
+        );
         // setPrevStateHall(structuredClone(currentHall));
     }, [halls]);
 
