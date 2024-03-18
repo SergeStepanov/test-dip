@@ -92,6 +92,7 @@ function PriceConfigurationContent({
                                                 currentHall.price_standard || ""
                                             }
                                             onChange={(e) => handleChange(e)}
+                                            required
                                         />
                                     </label>
                                     за{" "}
@@ -109,6 +110,7 @@ function PriceConfigurationContent({
                                             min={0}
                                             value={currentHall.price_vip || ""}
                                             onChange={(e) => handleChange(e)}
+                                            required
                                         />
                                     </label>
                                     за{" "}

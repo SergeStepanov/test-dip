@@ -121,6 +121,7 @@ function ConfigurationHallsContent({
                                         min={0}
                                         value={currentHall.rows || ""}
                                         onChange={(e) => handleChange(e)}
+                                        required
                                     />
                                 </label>
                                 <span className="multiplier">x</span>
@@ -134,6 +135,7 @@ function ConfigurationHallsContent({
                                         min={0}
                                         value={currentHall.cols || ""}
                                         onChange={(e) => handleChange(e)}
+                                        required
                                     />
                                 </label>
                             </div>

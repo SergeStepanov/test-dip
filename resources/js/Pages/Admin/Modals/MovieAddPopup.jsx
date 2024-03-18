@@ -13,9 +13,11 @@ export default function MovieAddPopup() {
     function hendleSubmit(e) {
         e.preventDefault();
 
-        post(route("movie.store"));
+        post(route("movie.store"), {
+            onSuccess: () => hendleClosePopupsBtn(e),
+        });
 
-        if (data.title.trim() !== "") hendleClosePopupsBtn(e);
+        // if (data.title.trim() !== "") hendleClosePopupsBtn(e);
     }
 
     return (
