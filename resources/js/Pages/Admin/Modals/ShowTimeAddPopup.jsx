@@ -24,7 +24,7 @@ export default function ShowTimeAddPopup({ movieId }) {
     function hendleSubmit(e) {
         e.preventDefault();
 
-        console.log(data);
+        // console.log(data);
         post(route("session.store"), {
             onSuccess: () => hendleClosePopupsBtn(e),
         });
