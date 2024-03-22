@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->datetime('start_time');
+            $table->string('start_time');
             $table->foreignId('hall_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('movie_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });

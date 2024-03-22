@@ -23,7 +23,7 @@ class SessionRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'start_time' => ['required', 'integer'],
+            'start_time' => ['required', 'string'],
             'hall_id' => ['required', 'integer'],
             'movie_id' => ['required', 'integer'],
 
