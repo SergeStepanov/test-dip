@@ -3,7 +3,7 @@
 Использованы:
 
 * PHP ver. 8.1
-* Laravel ver. 10.10
+* Laravel ver. 10.43.0
 * Laravel Breeze
 * Composer 
 * JS 
