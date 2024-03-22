@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SessionRequest;
 use App\Models\Session;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,9 @@ class SessionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): array|string
     {
-        //
+        return Session::all();
     }
 
     /**
@@ -26,9 +27,9 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SessionRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
