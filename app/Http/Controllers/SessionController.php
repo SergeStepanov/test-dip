@@ -27,7 +27,7 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SessionRequest $request)
+    public function store(SessionRequest $request): void
     {
         // dd($request->all());
         Session::create($request->validated());
