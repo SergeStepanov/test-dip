@@ -26,7 +26,6 @@ class SessionRequest extends FormRequest
             'start_time' => ['required', 'string'],
             'hall_id' => ['required', 'integer'],
             'movie_id' => ['required', 'integer'],
-
         ];
     }
 }

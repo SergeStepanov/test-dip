@@ -2,6 +2,7 @@ import { useForm, usePage } from "@inertiajs/react";
 import closeImg from "../../../../img/admin/close.png";
 import { hendleClosePopupsBtn } from "@/admin/helpFunctions";
 import { useEffect } from "react";
+import InputError from "@/Components/InputError";
 
 export default function ShowTimeAddPopup({ movieId }) {
     const { halls } = usePage().props;
@@ -24,7 +25,9 @@ export default function ShowTimeAddPopup({ movieId }) {
         e.preventDefault();
 
         console.log(data);
-        // post(route(""), data);
+        post(route("session.store"), {
+            onSuccess: () => hendleClosePopupsBtn(e),
+        });
     }
 
     return (
@@ -70,6 +73,14 @@ export default function ShowTimeAddPopup({ movieId }) {
                                         ))}
                                 </select>
                             </label>
+                            <InputError
+                                message={errors.hall_id}
+                                style={{
+                                    fontSize: 15 + "px",
+                                    color: "red",
+                                }}
+                            />
+
                             <label
                                 className="conf-step__label conf-step__label-fullsize"
                                 htmlFor="name"
@@ -87,6 +98,13 @@ export default function ShowTimeAddPopup({ movieId }) {
                                     required
                                 />
                             </label>
+                            <InputError
+                                message={errors.time}
+                                style={{
+                                    fontSize: 15 + "px",
+                                    color: "red",
+                                }}
+                            />
 
                             <label
                                 className="conf-step__label conf-step__label-fullsize"
@@ -105,6 +123,13 @@ export default function ShowTimeAddPopup({ movieId }) {
                                     required
                                 />
                             </label>
+                            <InputError
+                                message={errors.name}
+                                style={{
+                                    fontSize: 15 + "px",
+                                    color: "red",
+                                }}
+                            />
 
                             <div className="conf-step__buttons text-center">
                                 <input
