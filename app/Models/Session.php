@@ -14,7 +14,8 @@ class Session extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'datetime',
+        'name',
+        'start_time',
         'hall_id',
         'movie_id',
     ];
