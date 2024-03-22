@@ -10,7 +10,7 @@ import HallDeletePopup from "@/Pages/Admin/Modals/HallDeletePopup";
 import MovieAddPopup from "@/Pages/Admin/Modals/MovieAddPopup";
 import ShowTimeAddPopup from "@/Pages/Admin/Modals/ShowTimeAddPopup";
 
-export default function Authenticated({ children, delHall }) {
+export default function Authenticated({ children, delHall, movieId }) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -20,7 +20,7 @@ export default function Authenticated({ children, delHall }) {
             <HallAddPopup />
             <HallDeletePopup delHall={delHall} />
             <MovieAddPopup />
-            <ShowTimeAddPopup />
+            <ShowTimeAddPopup movieId={movieId} />
 
             <header
                 className="page-header"

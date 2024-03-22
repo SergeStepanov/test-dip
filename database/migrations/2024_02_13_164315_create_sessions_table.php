@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
 
-            $table->datetime('datetime');
+            $table->string('name');
+            $table->datetime('start_time');
             $table->foreignId('hall_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('movie_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });

@@ -1,25 +1,44 @@
-import { useForm } from '@inertiajs/react';
-import closeImg from '../../../../img/admin/close.png';
+import { useForm, usePage } from "@inertiajs/react";
+import closeImg from "../../../../img/admin/close.png";
+import { hendleClosePopupsBtn } from "@/admin/helpFunctions";
+import { useEffect } from "react";
 
-export default function ShowTimeAddPopup() {
-    const {data, setData, post, processing, errors, reset} = useForm({
+export default function ShowTimeAddPopup({ movieId }) {
+    const { halls } = usePage().props;
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
+        start_time: "",
+        hall_id: "",
+        movie_id: "",
     });
+
+    useEffect(() => {
+        setData((prev) => ({ ...prev, hall_id: halls[0].id }));
+    }, [halls]);
+
+    useEffect(() => {
+        setData((prev) => ({ ...prev, movie_id: movieId }));
+    }, [movieId]);
 
     function hendleSubmit(e) {
         e.preventDefault();
 
-        post(route(''));
+        console.log(data);
+        // post(route(""), data);
     }
 
     return (
-        <div className="popup">
+        <div className="popup" id="add_show_time">
             <div className="popup__container">
                 <div className="popup__content">
                     <div className="popup__header">
                         <h2 className="popup__title">
                             Добавление сеанса
-                            <a className="popup__dismiss" href="#">
+                            <a
+                                className="popup__dismiss"
+                                href="#"
+                                onClick={(evt) => hendleClosePopupsBtn(evt)}
+                            >
                                 <img src={closeImg} alt="Закрыть" />
                             </a>
                         </h2>
@@ -28,37 +47,50 @@ export default function ShowTimeAddPopup() {
                         <form onSubmit={hendleSubmit}>
                             <label
                                 className="conf-step__label conf-step__label-fullsize"
-                                for="hall"
+                                htmlFor="hall_id"
                             >
                                 Название зала
                                 <select
                                     className="conf-step__input"
-                                    name="hall"
+                                    name="hall_id"
                                     required
+                                    value={data.hall_id}
+                                    onChange={(e) =>
+                                        setData("hall_id", e.target.value)
+                                    }
                                 >
-                                    <option value="1" selected>
-                                        Зал 1
-                                    </option>
-                                    <option value="2">Зал 2</option>
+                                    {halls.length !== 0 &&
+                                        halls.map((hall) => (
+                                            <option
+                                                value={hall.id}
+                                                key={hall.id}
+                                            >
+                                                {hall.name}
+                                            </option>
+                                        ))}
                                 </select>
                             </label>
                             <label
                                 className="conf-step__label conf-step__label-fullsize"
-                                for="name"
+                                htmlFor="name"
                             >
                                 Время начала
                                 <input
                                     className="conf-step__input"
                                     type="time"
-                                    value="00:00"
+                                    value={data.start_time}
+                                    // defaultValue={"00:00"}
                                     name="start_time"
+                                    onChange={(e) =>
+                                        setData("start_time", e.target.value)
+                                    }
                                     required
                                 />
                             </label>
 
                             <label
                                 className="conf-step__label conf-step__label-fullsize"
-                                for="name"
+                                htmlFor="name"
                             >
                                 Название зала
                                 <input
@@ -66,6 +98,10 @@ export default function ShowTimeAddPopup() {
                                     type="text"
                                     placeholder="Например, &laquo;Зал 1&raquo;"
                                     name="name"
+                                    value={data.name}
+                                    onChange={(e) =>
+                                        setData("name", e.target.value)
+                                    }
                                     required
                                 />
                             </label>
@@ -76,7 +112,10 @@ export default function ShowTimeAddPopup() {
                                     value="Добавить"
                                     className="conf-step__button conf-step__button-accent"
                                 />
-                                <button className="conf-step__button conf-step__button-regular">
+                                <button
+                                    className="conf-step__button conf-step__button-regular"
+                                    onClick={(evt) => hendleClosePopupsBtn(evt)}
+                                >
                                     Отменить
                                 </button>
                             </div>

@@ -1,7 +1,7 @@
 import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
 import { usePage } from "@inertiajs/react";
 
-function SessionGridContent() {
+function SessionGridContent({ setMovieId }) {
     const { movies } = usePage().props;
 
     return (
@@ -23,11 +23,19 @@ function SessionGridContent() {
                 </p>
                 <div className="conf-step__movies">
                     {movies.map((movie) => (
-                        <div className="conf-step__movie" key={movie.id}>
+                        <div
+                            className="conf-step__movie"
+                            key={movie.id}
+                            onClick={() => {
+                                setMovieId(movie.id);
+
+                                openPopup("add_show_time");
+                            }}
+                        >
                             <img
                                 className="conf-step__movie-poster"
                                 alt="poster"
-                                src="i/poster.png"
+                                src="/resources/img/client/poster1.png"
                             />
                             <h3 className="conf-step__movie-title">
                                 {movie.title}
