@@ -25,6 +25,9 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [UserPageController::class, 'index'])->name('homepage');
+Route::get('/hall', [UserPageController::class, 'hallPage'])->name('hallpage');
+Route::get('/payment', [UserPageController::class, 'paymentPage'])->name('paymentpage');
+Route::get('/ticket', [UserPageController::class, 'ticketPage'])->name('ticketpage');
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
@@ -56,7 +59,7 @@ Route::middleware('auth')->group(function () {
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
 require __DIR__ . '/auth.php';
