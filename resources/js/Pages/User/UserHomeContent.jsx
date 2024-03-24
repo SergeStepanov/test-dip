@@ -4,11 +4,11 @@ import NavLink from "@/Components/NavLink";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
 
-export default function UserHomeContent({ halls, ...props }) {
+export default function UserHomeContent({ halls, sessions, ...props }) {
     return (
         <GuestLayout>
-            {/* {console.log(halls)}
-            {console.log(props)} */}
+            {console.log(sessions)}
+            {/* {console.log(props)} */}
 
             <NavBar />
 
