@@ -25,7 +25,10 @@ class Hall extends Model
 
     public function sessions(): HasMany
     {
-        return $this->hasMany(Session::class, 'hall_id');
+        return $this->hasMany(Session::class, 'hall_id')
+            ->orderBy('hall_id')
+            ->orderBy('start_time')
+            ->with('movie');
     }
 
     public function seats(): HasMany
