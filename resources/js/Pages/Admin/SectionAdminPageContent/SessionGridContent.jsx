@@ -1,8 +1,9 @@
 import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
 import { usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 
-function SessionGridContent({ setMovieId }) {
-    const { movies } = usePage().props;
+function SessionGridContent({ setMovieId, setDelSession }) {
+    const { movies, sessions } = usePage().props;
 
     return (
         <section className="conf-step">
@@ -35,7 +36,7 @@ function SessionGridContent({ setMovieId }) {
                             <img
                                 className="conf-step__movie-poster"
                                 alt="poster"
-                                src="/resources/img/client/poster1.png"
+                                src={`/storage/${movie.poster}`}
                             />
                             <h3 className="conf-step__movie-title">
                                 {movie.title}
@@ -46,97 +47,47 @@ function SessionGridContent({ setMovieId }) {
                         </div>
                     ))}
                 </div>
-                {/* Дописать !!!!!!!!!!!!! */}
-                <div className="conf-step__seances">
-                    <div className="conf-step__seances-hall">
-                        <h3 className="conf-step__seances-title">Зал 1</h3>
-                        <div className="conf-step__seances-timeline">
+                {sessions.length !== 0 && (
+                    <div className="conf-step__seances">
+                        {sessions.map((item, ind) => (
                             <div
-                                className="conf-step__seances-movie"
-                                style={{
-                                    width: 60 + "px",
-                                    backgroundColor: `rgb(133, 255, 137)`,
-                                    left: 0,
-                                }}
+                                className="conf-step__seances-hall"
+                                key={item.id}
                             >
-                                <p className="conf-step__seances-movie-title">
-                                    Миссия выполнима
-                                </p>
-                                <p className="conf-step__seances-movie-start">
-                                    00:00
-                                </p>
+                                <h3 className="conf-step__seances-title">
+                                    {item.name}
+                                </h3>
+                                <div className="conf-step__seances-timeline">
+                                    {item.sessions.map((elem, index) => (
+                                        <div
+                                            key={elem.id}
+                                            className="conf-step__seances-movie"
+                                            style={{
+                                                width: 60 + "px",
+                                                backgroundColor: `rgb(133, 255, 137)`,
+                                                left: index * 60,
+                                                cursor: "pointer",
+                                            }}
+                                            onClick={(e) => {
+                                                setDelSession(elem);
+
+                                                openPopup("delete_show_time");
+                                            }}
+                                        >
+                                            <p className="conf-step__seances-movie-title">
+                                                {elem.movie.title}
+                                            </p>
+                                            <p className="conf-step__seances-movie-start">
+                                                {elem.start_time}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            <div
-                                className="conf-step__seances-movie"
-                                style={{
-                                    width: 60 + "px",
-                                    backgroundColor: `rgb(133, 255, 137)`,
-                                    left: 360 + "px",
-                                }}
-                            >
-                                <p className="conf-step__seances-movie-title">
-                                    Миссия выполнима
-                                </p>
-                                <p className="conf-step__seances-movie-start">
-                                    12:00
-                                </p>
-                            </div>
-                            <div
-                                className="conf-step__seances-movie"
-                                style={{
-                                    width: 65 + "px",
-                                    backgroundColor: `rgb(202, 255, 133)`,
-                                    left: 420 + "px",
-                                }}
-                            >
-                                <p className="conf-step__seances-movie-title">
-                                    Звёздные войны XXIII: Атака клонированных
-                                    клонов
-                                </p>
-                                <p className="conf-step__seances-movie-start">
-                                    14:00
-                                </p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
-                    <div className="conf-step__seances-hall">
-                        <h3 className="conf-step__seances-title">Зал 2</h3>
-                        <div className="conf-step__seances-timeline">
-                            <div
-                                className="conf-step__seances-movie"
-                                style={{
-                                    width: 65 + "px",
-                                    backgroundColor: `rgb(202, 255, 133)`,
-                                    left: 595 + "px",
-                                }}
-                            >
-                                <p className="conf-step__seances-movie-title">
-                                    Звёздные войны XXIII: Атака клонированных
-                                    клонов
-                                </p>
-                                <p className="conf-step__seances-movie-start">
-                                    19:50
-                                </p>
-                            </div>
-                            <div
-                                className="conf-step__seances-movie"
-                                style={{
-                                    width: 60 + "px",
-                                    backgroundColor: `rgb(133, 255, 137)`,
-                                    left: 660 + "px",
-                                }}
-                            >
-                                <p className="conf-step__seances-movie-title">
-                                    Миссия выполнима
-                                </p>
-                                <p className="conf-step__seances-movie-start">
-                                    22:00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <fieldset className="conf-step__buttons text-center">
+                )}
+                {/* <fieldset className="conf-step__buttons text-center">
                     <button className="conf-step__button conf-step__button-regular">
                         Отмена
                     </button>
@@ -145,7 +96,7 @@ function SessionGridContent({ setMovieId }) {
                         value="Сохранить"
                         className="conf-step__button conf-step__button-accent"
                     />
-                </fieldset>
+                </fieldset> */}
             </div>
         </section>
     );
