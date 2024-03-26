@@ -8,6 +8,7 @@ import OpenSalesContent from "./SectionAdminPageContent/OpenSalesContent";
 
 export default function AdminPageContent({ halls, movies, ...props }) {
     const [delHall, setDelHall] = useState({});
+    const [delSession, setDelSession] = useState({});
     const [movieId, setMovieId] = useState("");
     const [currentHall, setCurrentHall] = useState({});
     const [prevStateHall, setPrevStateHall] = useState({});
@@ -46,7 +47,11 @@ export default function AdminPageContent({ halls, movies, ...props }) {
     }
 
     return (
-        <AuthenticatedLayout delHall={delHall} movieId={movieId}>
+        <AuthenticatedLayout
+            delHall={delHall}
+            movieId={movieId}
+            delSession={delSession}
+        >
             {/* сделано */}
             <HallManagementContent setDelHall={setDelHall} />
 
@@ -67,7 +72,10 @@ export default function AdminPageContent({ halls, movies, ...props }) {
             />
 
             {/* не сделано */}
-            <SessionGridContent setMovieId={setMovieId} />
+            <SessionGridContent
+                setMovieId={setMovieId}
+                setDelSession={setDelSession}
+            />
 
             {/* ? сделано */}
             <OpenSalesContent currentHall={currentHall} />

@@ -9,8 +9,14 @@ import HallAddPopup from "@/Pages/Admin/Modals/HallAddPopup";
 import HallDeletePopup from "@/Pages/Admin/Modals/HallDeletePopup";
 import MovieAddPopup from "@/Pages/Admin/Modals/MovieAddPopup";
 import ShowTimeAddPopup from "@/Pages/Admin/Modals/ShowTimeAddPopup";
+import ShowTimeDeletePopup from "@/Pages/Admin/Modals/ShowTimeDeletePopup";
 
-export default function Authenticated({ children, delHall, movieId }) {
+export default function Authenticated({
+    children,
+    delHall,
+    movieId,
+    delSession,
+}) {
     // const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -21,6 +27,7 @@ export default function Authenticated({ children, delHall, movieId }) {
             <HallDeletePopup delHall={delHall} />
             <MovieAddPopup />
             <ShowTimeAddPopup movieId={movieId} />
+            <ShowTimeDeletePopup delSession={delSession} />
 
             <header
                 className="page-header"
