@@ -33,6 +33,7 @@ class Hall extends Model
 
     public function seats(): HasMany
     {
-        return $this->hasMany(Seat::class, 'hall_id');
+        return $this->hasMany(Seat::class, 'hall_id')
+            ->orderBy('number');
     }
 }
