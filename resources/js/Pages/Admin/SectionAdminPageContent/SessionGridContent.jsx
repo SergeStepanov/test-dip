@@ -49,7 +49,7 @@ function SessionGridContent({ setMovieId, setDelSession }) {
                 </div>
                 {sessions.length !== 0 && (
                     <div className="conf-step__seances">
-                        {sessions.map((item, ind) => (
+                        {sessions.map((item, ind) => item.sessions.length !== 0 && (
                             <div
                                 className="conf-step__seances-hall"
                                 key={item.id}
