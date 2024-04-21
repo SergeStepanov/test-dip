@@ -23,7 +23,8 @@ class Session extends Model
 
     public function hall(): BelongsTo
     {
-        return $this->belongsTo(Hall::class, 'hall_id');
+        return $this->belongsTo(Hall::class, 'hall_id')
+            ->select('id', 'name', 'is_active');
     }
 
     public function movie(): BelongsTo

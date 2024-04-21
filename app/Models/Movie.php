@@ -24,6 +24,8 @@ class Movie extends Model
 
     public function sessions(): HasMany
     {
-        return $this->hasMany(Session::class, 'movie_id');
+        return $this->hasMany(Session::class, 'movie_id')
+            ->orderBy('start_time')
+            ->with('hall');
     }
 }
