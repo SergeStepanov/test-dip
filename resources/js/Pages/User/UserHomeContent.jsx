@@ -2,18 +2,26 @@ import HeaderUser from "@/Components/HeaderUser";
 import NavBar from "@/Components/NavBar";
 import NavLink from "@/Components/NavLink";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
+import { useState } from "react";
 
-export default function UserHomeContent({ halls, sessions, ...props }) {
+export default function UserHomeContent() {
+    const { moviesSessions } = usePage().props;
+    const [sessionsDate, setSessionsDate] = useState(
+        `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
+    );
     return (
         <GuestLayout>
-            {console.log(sessions)}
-            {/* {console.log(props)} */}
+            {/* {console.log(moviesSessions)} */}
+            {console.log(sessionsDate)}
 
-            <NavBar />
+            <NavBar setSessionsDate={setSessionsDate} />
 
-            <nav className="page-nav">
-                <a className="page-nav__day page-nav__day_today page-nav__day_chosen" href="#">
+            {/* <nav className="page-nav">
+                <a
+                    className="page-nav__day page-nav__day_today page-nav__day_chosen"
+                    href="#"
+                >
                     <span className="page-nav__day-week">Пн</span>
                     <span className="page-nav__day-number">31</span>
                 </a>
@@ -38,16 +46,17 @@ export default function UserHomeContent({ halls, sessions, ...props }) {
                     <span className="page-nav__day-number">5</span>
                 </a>
                 <a className="page-nav__day page-nav__day_next" href="#"></a>
-            </nav>
+            </nav> */}
 
             <main>
+                {}
                 <section className="movie">
                     <div className="movie__info">
                         <div className="movie__poster">
                             <img
                                 className="movie__poster-image"
                                 alt="Звёздные войны постер"
-                                src="i/poster1.jpg"
+                                src="/storage/poster1.jpg"
                             />
                         </div>
                         <div className="movie__description">
