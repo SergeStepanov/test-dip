@@ -25,7 +25,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [UserPageController::class, 'index'])->name('homepage');
-Route::get('/hall', [UserPageController::class, 'hallPage'])->name('hallpage');
+Route::get('/hall-seats', [UserPageController::class, 'hallPage'])->name('hallpage');
 Route::get('/payment', [UserPageController::class, 'paymentPage'])->name('paymentpage');
 Route::get('/ticket', [UserPageController::class, 'ticketPage'])->name('ticketpage');
 
