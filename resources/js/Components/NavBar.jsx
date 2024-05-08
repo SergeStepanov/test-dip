@@ -22,7 +22,7 @@ export default function NavBar({ setSessionsDate }) {
                     href="#"
                     key={index}
                     onClick={handleClick}
-                    data-ses-date={`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`}
+                    data-ses-date={`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`}
                 >
                     <span className="page-nav__day-week">
                         {dayWeek(date.getDay())}

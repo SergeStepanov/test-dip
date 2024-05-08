@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function UserHomeContent() {
     const { movies } = usePage().props;
     const [sessionsDate, setSessionsDate] = useState(
-        `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
+        `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
     );
 
     return (
