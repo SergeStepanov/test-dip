@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "@/client/nav";
 import classNames from "classnames";
-import { dayWeek } from "@/client/helpFunctions";
+import { addZero, dayWeek } from "@/client/helpFunctions";
 
 export default function NavBar({ setSessionsDate }) {
     function listNav() {
@@ -22,7 +22,9 @@ export default function NavBar({ setSessionsDate }) {
                     href="#"
                     key={index}
                     onClick={handleClick}
-                    data-ses-date={`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`}
+                    data-ses-date={`${date.getFullYear()}-${addZero(
+                        date.getMonth() + 1
+                    )}-${addZero(date.getDate())}`}
                 >
                     <span className="page-nav__day-week">
                         {dayWeek(date.getDay())}

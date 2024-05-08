@@ -1,13 +1,16 @@
 import HallMovie from "@/Components/HallMovie";
 import NavBar from "@/Components/NavBar";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { addZero } from "@/client/helpFunctions";
 import { usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function UserHomeContent() {
     const { movies } = usePage().props;
     const [sessionsDate, setSessionsDate] = useState(
-        `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+        `${new Date().getFullYear()}-${addZero(
+            new Date().getMonth() + 1
+        )}-${addZero(new Date().getDate())}`
     );
 
     return (
