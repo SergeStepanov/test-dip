@@ -35,7 +35,7 @@ export default function HallMovie({ movieId, sessionsDate }) {
                                         >
                                             <Link
                                                 className="movie-seances__time"
-                                                href={route('hallpage', `id=${session.id}&date=${sessionsDate}`)}
+                                                href={route('hallpage', {'id': session.id, 'date': sessionsDate})}
                                             >
                                                 {session.start_time}
                                             </Link>
