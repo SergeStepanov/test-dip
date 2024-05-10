@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Hall;
 use App\Models\Movie;
+use App\Models\Seat;
 use App\Models\Session;
+use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -31,18 +33,36 @@ class UserPageController extends Controller
     public function hallPage(Request $request): Response
     {
         $id = $request->input('id');
-        // dd($id);
+        $session = Session::where('id', $id)->with(['hall', 'movie'])->first();
+
+        $sessionDate = new Carbon($request->input('date') . $session->start_time);
+
+        $seats = Seat::where('hall_id', $session->hall_id)->get();
+        // dd($sessionDate->format('Y-m-d H:i'));
         return Inertia::render('User/HallPageContent', [
             // 'halls' => Hall::where('is_active', 1)->with('sessions')->get(),
-            'session' => Session::where('id', $id)->with(['hall', 'movie'])->get(),
+            'session' => $session,
+            'seats' => $seats,
+            'sessionDate' => $sessionDate->format('Y-m-d H:i'),
         ]);
     }
 
-    public function paymentPage(): Response
+    public function paymentPage(Request $request): Response
     {
+        $id = $request->input('id');
+        $sessionDate = $request->input('sessionDate');
+        $seatsNumber = $request->input('seatsNumber');
+        $session = Session::where('id', $id)->with(['hall', 'movie'])->first();
+
+
+        // dd($request->all());
+        // var_dump($sessionDate);
+        // dd($seatsNumber);
+
         return Inertia::render('User/PaymentPageContent', [
-            'halls' => Hall::where('is_active', 1)->with('sessions')->get(),
-            'sessions' => Session::orderBy('start_time')->with(['hall', 'movie'])->get(),
+            'seatsNumber' => $seatsNumber,
+            'session' => $session,
+            'sessionDate' => $sessionDate,
         ]);
     }
 

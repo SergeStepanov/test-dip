@@ -6,6 +6,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserPageController;
 use App\Models\Hall;
 use App\Models\Movie;
@@ -26,6 +27,9 @@ use Inertia\Inertia;
 
 Route::get('/', [UserPageController::class, 'index'])->name('homepage');
 Route::get('/hall-seats', [UserPageController::class, 'hallPage'])->name('hallpage');
+
+Route::post('/hall-seats', [TicketController::class, 'store'])->name('storeticket');
+
 Route::get('/payment', [UserPageController::class, 'paymentPage'])->name('paymentpage');
 Route::get('/ticket', [UserPageController::class, 'ticketPage'])->name('ticketpage');
 
