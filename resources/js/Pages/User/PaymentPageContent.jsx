@@ -1,6 +1,9 @@
 import GuestLayout from "@/Layouts/GuestLayout";
+import { usePage } from "@inertiajs/react";
 
 export default function PaymentPageContent() {
+    const { session, sessionDate, seatsNumber } = usePage().props;
+console.log(seatsNumber)
     return (
         <GuestLayout>
             <main>
@@ -15,25 +18,25 @@ export default function PaymentPageContent() {
                         <p className="ticket__info">
                             На фильм:{" "}
                             <span className="ticket__details ticket__title">
-                                Звёздные войны XXIII: Атака клонированных клонов
+                                {session.movie.title}
                             </span>
                         </p>
                         <p className="ticket__info">
                             Места:{" "}
                             <span className="ticket__details ticket__chairs">
-                                6, 7
+                                {seatsNumber}
                             </span>
                         </p>
                         <p className="ticket__info">
                             В зале:{" "}
                             <span className="ticket__details ticket__hall">
-                                1
+                                {session.hall.name}
                             </span>
                         </p>
                         <p className="ticket__info">
                             Начало сеанса:{" "}
                             <span className="ticket__details ticket__start">
-                                18:30
+                                {sessionDate}
                             </span>
                         </p>
                         <p className="ticket__info">
@@ -46,7 +49,7 @@ export default function PaymentPageContent() {
 
                         <button
                             className="acceptin-button"
-                            onclick="location.href='ticket.html'"
+                            // onClick="location.href='ticket.html'"
                         >
                             Получить код бронирования
                         </button>
