@@ -13,10 +13,18 @@ class Ticket extends Model
 
     protected $fillable = [
         'session_id',
+        'totalSum',
+        'dateTime',
+        'seatsNumber',
+        'qrCode',
     ];
 
     protected $hidden = [
         'created_up', 'updated_at',
+    ];
+
+    protected $cast = [
+        'seatsNumber' => 'array'
     ];
 
     public function sesion(): BelongsTo

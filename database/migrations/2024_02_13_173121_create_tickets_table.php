@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('session_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedInteger('totalSum')->default(0);
+            $table->dateTime('dateTime');
+            $table->json('seatsNumber');
+            $table->string('qrCode')->default('');
 
             $table->timestamps();
         });
