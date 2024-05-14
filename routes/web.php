@@ -30,7 +30,7 @@ Route::get('/hall-seats', [UserPageController::class, 'hallPage'])->name('hallpa
 
 Route::post('/hall-seats', [TicketController::class, 'store'])->name('storeticket');
 
-Route::get('/payment', [UserPageController::class, 'paymentPage'])->name('paymentpage');
+Route::get('/payment/{id}', [UserPageController::class, 'paymentPage'])->name('paymentpage');
 Route::get('/ticket', [UserPageController::class, 'ticketPage'])->name('ticketpage');
 
 // Route::get('/dashboard', function () {

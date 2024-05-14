@@ -2,7 +2,7 @@ import { usePage } from "@inertiajs/react";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 
-export default function SeatHallSession({ status, number, id }) {
+export default function SeatHallSession({ status, number, id, price }) {
     const { sessionDate } = usePage().props;
 
     const [statusSeat, setStatusSeat] = useState("");
@@ -12,10 +12,12 @@ export default function SeatHallSession({ status, number, id }) {
         "buying-scheme__chair_vip": statusSeat === "vip",
         "buying-scheme__chair_standart": statusSeat === "standart",
         "buying-scheme__chair_selected": statusSeat === "selected",
+        "buying-scheme__chair_taken": statusSeat === "taken",
     });
 
     function handleClick(e) {
         if (e.target.dataset.status === "disabled") return;
+        if (e.target.dataset.status === "taken") return;
 
         if (e.target.dataset.status === "selected") {
             setStatusSeat((prev) => (prev = e.target.dataset.prevStatus));
@@ -37,6 +39,7 @@ export default function SeatHallSession({ status, number, id }) {
             data-prev-status={status}
             data-number={number}
             data-session-date={sessionDate}
+            data-price={price}
             onClick={(e) => handleClick(e)}
         ></span>
     );

@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 export default function HallPageContent() {
     const { session, seats, sessionDate } = usePage().props;
     const [shemeRows, setShemeRows] = useState([]);
-    const { data, setData, get, errors } = useForm({
-        id: "",
-        sessionDate: "",
+    const { data, setData, post, errors } = useForm({
+        session_id: "",
+        dateTime: "",
         seatsNumber: null,
+        totalSum: 0,
     });
 
     function handleSubmit(e) {
@@ -21,17 +22,21 @@ export default function HallPageContent() {
         );
 
         if (seatsSelected.length === 0) return;
-        
+
         let numbers = seatsSelected.map((el) => +el.dataset.number);
 
         setData((prev) => ({
             ...prev,
-            seatsNumber: prev.seatsNumber = JSON.stringify(numbers),
+            seatsNumber: (prev.seatsNumber = numbers),
+            totalSum: (prev.totalSum = seatsSelected.reduce(
+                (acc, value) => acc + Number(value.dataset.price),
+                0
+            )),
         }));
 
-        get(route("paymentpage", data));
+        post(route("storeticket", data));
         // console.log(data);
-        // console.log(numbers);
+        // console.log(sum);
     }
 
     function rowSeats() {
@@ -55,8 +60,8 @@ export default function HallPageContent() {
     useEffect(() => {
         setData((prev) => ({
             ...prev,
-            id: session.id,
-            sessionDate: sessionDate,
+            session_id: session.id,
+            dateTime: sessionDate,
         }));
     }, [session.id, sessionDate]);
 
@@ -77,13 +82,6 @@ export default function HallPageContent() {
                                 {session.hall.name}
                             </p>
                         </div>
-                        {/* <div className="buying__info-hint">
-                            <p>
-                                Тапните дважды,
-                                <br />
-                                чтобы увеличить
-                            </p>
-                        </div> */}
                     </div>
                     <div className="buying-scheme">
                         <div className="buying-scheme__wrapper">
@@ -95,26 +93,17 @@ export default function HallPageContent() {
                                             status={seat.status}
                                             number={seat.number}
                                             id={seat.id}
+                                            price={
+                                                seat.status === "vip"
+                                                    ? session.hall.price_vip
+                                                    : session.hall.price_standard
+                                            }
                                         />
                                     ))}
                                 </div>
                             ))}
-
-                            <div className="buying-scheme__row">
-                                <span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_taken"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_selected"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_selected"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_disabled"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_disabled"></span>
-                                <span className="buying-scheme__chair buying-scheme__chair_disabled"></span>
-                            </div>
                         </div>
+
                         <div className="buying-scheme__legend">
                             <div className="col">
                                 <p className="buying-scheme__legend-price">
