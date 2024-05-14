@@ -6,9 +6,11 @@ use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\Seat;
 use App\Models\Session;
+use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -37,32 +39,35 @@ class UserPageController extends Controller
 
         $sessionDate = new Carbon($request->input('date') . $session->start_time);
 
+        $takenSeats = Arr::collapse(Ticket::where('session_id', $session->id)
+            ->where('dateTime', $sessionDate)
+            ->pluck('seatsNumber'));
+
         $seats = Seat::where('hall_id', $session->hall_id)->get();
-        // dd($sessionDate->format('Y-m-d H:i'));
+
+        foreach ($seats as $seat) {
+            foreach ($takenSeats as $value) {
+                if ($seat->number === $value) {
+                    $seat->status = 'taken';
+                }
+            }
+        }
+
+        // dd($takenSeats);
+
         return Inertia::render('User/HallPageContent', [
-            // 'halls' => Hall::where('is_active', 1)->with('sessions')->get(),
             'session' => $session,
             'seats' => $seats,
             'sessionDate' => $sessionDate->format('Y-m-d H:i'),
         ]);
     }
 
-    public function paymentPage(Request $request): Response
+    public function paymentPage(int $id): Response
     {
-        $id = $request->input('id');
-        $sessionDate = $request->input('sessionDate');
-        $seatsNumber = $request->input('seatsNumber');
-        $session = Session::where('id', $id)->with(['hall', 'movie'])->first();
-
-
-        // dd($request->all());
-        // var_dump($sessionDate);
-        // dd($seatsNumber);
+        $ticket = Ticket::find($id);
 
         return Inertia::render('User/PaymentPageContent', [
-            'seatsNumber' => $seatsNumber,
-            'session' => $session,
-            'sessionDate' => $sessionDate,
+            'ticket' => $ticket,
         ]);
     }
 
