@@ -65,6 +65,11 @@ class UserPageController extends Controller
     public function paymentTicketPage(int $id): Response
     {
         $ticket = Ticket::find($id);
+
+        if (!$ticket) {
+            return abort(404);
+        }
+
         $session = Session::where('id', $ticket->session_id)->with('hall', 'movie')->first();
 
         return Inertia::render('User/PaymentTicketPage', [

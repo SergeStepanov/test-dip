@@ -10,7 +10,7 @@ export default function PaymentTicketPage() {
     return (
         <GuestLayout>
             <main>
-                {ticket.qrCode === "" ? (
+                {ticket.qrCode.trim() === "" ? (
                     <PaymentPageContent />
                 ) : (
                     <TicketPageContent />
