@@ -62,20 +62,14 @@ class UserPageController extends Controller
         ]);
     }
 
-    public function paymentPage(int $id): Response
+    public function paymentTicketPage(int $id): Response
     {
         $ticket = Ticket::find($id);
+        $session = Session::where('id', $ticket->session_id)->with('hall', 'movie')->first();
 
-        return Inertia::render('User/PaymentPageContent', [
+        return Inertia::render('User/PaymentTicketPage', [
             'ticket' => $ticket,
-        ]);
-    }
-
-    public function ticketPage(): Response
-    {
-        return Inertia::render('User/TicketPageContent', [
-            'halls' => Hall::where('is_active', 1)->with('sessions')->get(),
-            'sessions' => Session::orderBy('start_time')->with(['hall', 'movie'])->get(),
+            'session' => $session,
         ]);
     }
 }
