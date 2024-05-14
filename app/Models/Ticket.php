@@ -23,7 +23,7 @@ class Ticket extends Model
         'created_up', 'updated_at',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'seatsNumber' => 'array'
     ];
 
