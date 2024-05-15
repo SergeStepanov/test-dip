@@ -32,6 +32,8 @@ Route::post('/hall-seats', [TicketController::class, 'store'])->name('storeticke
 
 Route::get('/payment-ticket/{id}', [UserPageController::class, 'paymentTicketPage'])->name('paymentpage');
 
+Route::patch('/payment-ticket', [TicketController::class, 'update'])->name('addqrticket');
+
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

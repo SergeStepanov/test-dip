@@ -36,7 +36,7 @@ export default function TicketPageContent() {
                         </span>
                     </p>
 
-                    <img className="ticket__info-qr" src="i/qr-code.png" />
+                    <img className="ticket__info-qr" src={`/storage/qr/${ticket.qrCode}`} alt="Qr Code"/>
 
                     <p className="ticket__hint">
                         Покажите QR-код нашему контроллеру для подтверждения

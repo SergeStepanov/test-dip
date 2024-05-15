@@ -2,8 +2,8 @@ import { Link, usePage } from "@inertiajs/react";
 
 export default function PaymentPageContent() {
     const { ticket, session } = usePage().props;
-    console.log(ticket);
-    console.log(session);
+    // console.log(ticket);
+    // console.log(session);
 
     return (
         <>
@@ -50,6 +50,9 @@ export default function PaymentPageContent() {
                         className="acceptin-button"
                         style={{ cursor: "pointer" }}
                         // onClick="location.href='ticket.html'"
+                        href={route("addqrticket")}
+                        method="patch"
+                        data={{ id: ticket.id }}
                     >
                         Получить код бронирования
                     </Link>
