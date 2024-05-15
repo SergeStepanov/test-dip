@@ -33,7 +33,7 @@ export default function AdminPageContent({ halls, movies, ...props }) {
     // для кнопки отмена
     useEffect(() => {
         setPrevStateHall(structuredClone(currentHall));
-    }, [currentHall.id]);
+    }, [currentHall.id, halls]);
 
     // useEffect(() => {
     //     // console.log(currentHall.seats, prevStateHall.seats);

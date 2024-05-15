@@ -67,7 +67,6 @@ class SeatController extends Controller
                 'status' => $value['status'],
             ]);
         }
-        // dd($seatsReq);
     }
 
     /**
