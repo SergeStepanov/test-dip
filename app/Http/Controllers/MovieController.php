@@ -11,7 +11,7 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): array|string
     {
         return Movie::all();
     }
@@ -29,7 +29,14 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
-        Movie::create($request->validated());
+        // dd($request->all());
+        // Movie::create($request->validated());
+
+        $movie = new Movie();
+        $movie->fill($request->validated());
+        $movie->poster = $request->poster->store(storage_path('app/public'));
+        $movie->save();
+
     }
 
     /**

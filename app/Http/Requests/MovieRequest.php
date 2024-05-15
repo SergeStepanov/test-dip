@@ -26,7 +26,7 @@ class MovieRequest extends FormRequest
             'duration' => ['integer'],
             'description' => ['string'],
             'country' => ['string', 'max:40'],
-            'poster' => ['string'],
+            'poster' => ['image'],
         ];
     }
 }
