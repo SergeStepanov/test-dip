@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MovieRequest;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -34,9 +35,9 @@ class MovieController extends Controller
 
         $movie = new Movie();
         $movie->fill($request->validated());
-        $movie->poster = $request->poster->store(storage_path('app/public'));
+        // $movie->poster = $request->poster->store();
+        $movie->poster = Storage::disk('public')->put('', $request->poster);
         $movie->save();
-
     }
 
     /**
@@ -63,7 +64,6 @@ class MovieController extends Controller
         $movie->fill($request->validated());
 
         $movie->save();
-
     }
 
     /**

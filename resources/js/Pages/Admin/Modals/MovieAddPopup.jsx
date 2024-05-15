@@ -17,7 +17,6 @@ export default function MovieAddPopup() {
     function hendleSubmit(e) {
         e.preventDefault();
 
-        // console.log(data);
         post(route("movie.store"), {
             onSuccess: () => hendleClosePopupsBtn(e),
         });
