@@ -27,6 +27,7 @@ class HallSeeder extends Seeder
             'cols' => 10,
             'price_standard' => 350,
             'price_vip' => 450,
+            'is_active' => 1,
         ]);
 
         DB::table('halls')->insert([
