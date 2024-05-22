@@ -17,14 +17,6 @@ class HallController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(HallRequest $request): void
@@ -42,27 +34,10 @@ class HallController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Hall $hall)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Hall $hall)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(HallRequest $request, Hall $hall)
     {
-        // dd($request->all());
         $hall->fill($request->validated());
 
         $hall->save();
@@ -74,6 +49,5 @@ class HallController extends Controller
     public function destroy(Hall $hall)
     {
         $hall->delete();
-        // $hall->truncate();
     }
 }

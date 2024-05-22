@@ -17,14 +17,6 @@ class MovieController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(MovieRequest $request)
@@ -33,22 +25,6 @@ class MovieController extends Controller
         $movie->fill($request->validated());
         $movie->poster = Storage::disk('public')->put('', $request->poster);
         $movie->save();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Movie $movie)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Movie $movie)
-    {
-        //
     }
 
     /**

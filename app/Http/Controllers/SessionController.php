@@ -16,13 +16,6 @@ class SessionController extends Controller
         return Session::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -30,30 +23,6 @@ class SessionController extends Controller
     public function store(SessionRequest $request): void
     {
         Session::create($request->validated());
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Session $session)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Session $session)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Session $session)
-    {
-        //
     }
 
     /**

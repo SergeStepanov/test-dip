@@ -17,35 +17,11 @@ class SeatController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(SeatRequest $request)
     {
         Seat::create($request->validated());
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Seat $seat)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Seat $seat)
-    {
-        //
     }
 
     /**
@@ -56,20 +32,12 @@ class SeatController extends Controller
         $seatsReq = $request->input('data');
 
         foreach ($seatsReq as $value) {
-            Seat:: updateOrCreate([
+            Seat::updateOrCreate([
                 'hall_id' => $id,
                 'number' => $value['number'],
             ], [
                 'status' => $value['status'],
             ]);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Seat $seat)
-    {
-        //
     }
 }
