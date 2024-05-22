@@ -37,6 +37,7 @@ export default function HallPageContent() {
     }
 
     function rowSeats() {
+        seats.sort((a, b) => Number(a.number) - Number(b.number));
         let arr = [];
         let next = 0;
         for (let row = 0; row < session.hall.rows; row++) {
@@ -92,7 +93,8 @@ export default function HallPageContent() {
                                             price={
                                                 seat.status === "vip"
                                                     ? session.hall.price_vip
-                                                    : session.hall.price_standard
+                                                    : session.hall
+                                                          .price_standard
                                             }
                                         />
                                     ))}
