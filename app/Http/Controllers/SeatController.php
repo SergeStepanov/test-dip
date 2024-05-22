@@ -29,7 +29,6 @@ class SeatController extends Controller
      */
     public function store(SeatRequest $request)
     {
-        // dd($request);
         Seat::create($request->validated());
     }
 
@@ -55,11 +54,8 @@ class SeatController extends Controller
     public function update(Request $request, int $id)
     {
         $seatsReq = $request->input('data');
-        // $seatsTable = Seat::where('hall_id', $id)->get();
 
         foreach ($seatsReq as $value) {
-            // dd($value['status']);
-
             Seat:: updateOrCreate([
                 'hall_id' => $id,
                 'number' => $value['number'],
