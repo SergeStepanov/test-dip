@@ -5,7 +5,6 @@ import TicketPageContent from "./TicketPageContent";
 
 export default function PaymentTicketPage() {
     const { ticket } = usePage().props;
-    // console.log(ticket);
 
     return (
         <GuestLayout>

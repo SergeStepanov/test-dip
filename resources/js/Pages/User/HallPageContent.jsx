@@ -1,7 +1,6 @@
 import SeatHallSession from "@/Components/SeatHallSession";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { useForm, usePage } from "@inertiajs/react";
-import classNames from "classnames";
 import { useEffect, useState } from "react";
 
 export default function HallPageContent() {
@@ -35,8 +34,6 @@ export default function HallPageContent() {
         }));
 
         post(route("storeticket", data));
-        // console.log(data);
-        // console.log(sum);
     }
 
     function rowSeats() {
@@ -65,7 +62,6 @@ export default function HallPageContent() {
         }));
     }, [session.id, sessionDate]);
 
-    // console.log(shemeRows);
     return (
         <GuestLayout>
             <main>

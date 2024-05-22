@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HallRequest;
 use App\Models\Hall;
 use App\Models\Seat;
-use Illuminate\Http\Request;
 
 class HallController extends Controller
 {
@@ -37,7 +36,6 @@ class HallController extends Controller
                 'status' => 'standart',
                 'hall_id' => $hall->id,
             ];
-            // dd($seat);
 
             Seat::create($seat);
         }

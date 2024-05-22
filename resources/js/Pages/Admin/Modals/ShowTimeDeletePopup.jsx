@@ -20,7 +20,6 @@ export default function ShowTimeDeletePopup({ delSession }) {
     function hendleSubmit(e) {
         e.preventDefault();
         destroy(route("session.destroy", data));
-        // console.log(data);
         hendleClosePopupsBtn(e);
     }
 

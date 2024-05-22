@@ -36,10 +36,6 @@ function ConfigurationHallsContent({
 
     function handleSubmit(e) {
         e.preventDefault();
-        // if () {
-        //     return;
-        // }
-        // console.log(dataSeats.data, data);
 
         update(route("hall.update", data));
         upd(route("seat.update", dataSeats));

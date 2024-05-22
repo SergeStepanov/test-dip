@@ -13,32 +13,23 @@ export default function AdminPageContent({ halls, movies, ...props }) {
     const [currentHall, setCurrentHall] = useState({});
     const [prevStateHall, setPrevStateHall] = useState({});
 
-    // console.log(halls);
-    // console.log(currentHall.seats, prevStateHall.seats);
     useEffect(() => {
         setCurrentHall(halls.length ? halls.at(-1) : {});
     }, [halls.length]);
 
     useEffect(() => {
-        // setCurrentHall(halls.length ? halls.at(-1) : {});
         setCurrentHall(
             (prev) =>
                 (prev = halls.length
                     ? halls.find((el) => el.id == prev.id)
                     : {})
         );
-        // setPrevStateHall(structuredClone(currentHall));
     }, [halls]);
 
     // для кнопки отмена
     useEffect(() => {
         setPrevStateHall(structuredClone(currentHall));
     }, [currentHall.id, halls]);
-
-    // useEffect(() => {
-    //     // console.log(currentHall.seats, prevStateHall.seats);
-    //     console.log(currentHall, prevStateHall);
-    // });
 
     // for onChange
     function handleChange(e) {
@@ -52,10 +43,8 @@ export default function AdminPageContent({ halls, movies, ...props }) {
             movieId={movieId}
             delSession={delSession}
         >
-            {/* сделано */}
             <HallManagementContent setDelHall={setDelHall} />
 
-            {/* не сделано */}
             <ConfigurationHallsContent
                 currentHall={currentHall}
                 setCurrentHall={setCurrentHall}
@@ -63,7 +52,6 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                 prevStateHall={prevStateHall}
             />
 
-            {/* не сделано */}
             <PriceConfigurationContent
                 currentHall={currentHall}
                 setCurrentHall={setCurrentHall}
@@ -71,13 +59,11 @@ export default function AdminPageContent({ halls, movies, ...props }) {
                 prevStateHall={prevStateHall}
             />
 
-            {/* не сделано */}
             <SessionGridContent
                 setMovieId={setMovieId}
                 setDelSession={setDelSession}
             />
 
-            {/* ? сделано */}
             <OpenSalesContent currentHall={currentHall} />
         </AuthenticatedLayout>
     );

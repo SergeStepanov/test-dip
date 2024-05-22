@@ -2,8 +2,6 @@ import { Link, usePage } from "@inertiajs/react";
 
 export default function PaymentPageContent() {
     const { ticket, session } = usePage().props;
-    // console.log(ticket);
-    // console.log(session);
 
     return (
         <>

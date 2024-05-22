@@ -33,12 +33,9 @@ class TicketController extends Controller
      */
     public function store(TicketRequest $request)
     {
-        // dd($request->all());
-        // Ticket::create($request->validated());
 
         $res = Ticket::create($request->validated());
 
-        // dd($res->id);
         return redirect()->route('paymentpage', ['id' => $res->id]);
     }
 
@@ -67,13 +64,11 @@ class TicketController extends Controller
         $session = Session::where('id', $ticket->session_id)->with('hall', 'movie')->first();
         $codeText = 'Билет: ' . $ticket->id . '. Зал: ' . $session->hall->name . '. Время: ' . $ticket->dateTime . '. Места: ' . Arr::join($ticket->seatsNumber, ', ') . '.';
 
-        // dd(phpinfo());
         $qr = QrCode::size(300)->format('png')->encoding('UTF-8')->generate($codeText);
         Storage::disk('public')
             ->put('/qr/' . $ticket->id . '.png', $qr);
 
         $contents = Storage::get('/public/qr/' . $ticket->id . '.png');
-        // dd($contents);
 
         $ticket->qrCode = $ticket->id . '.png';
 

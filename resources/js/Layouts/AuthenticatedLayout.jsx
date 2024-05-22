@@ -1,8 +1,3 @@
-import { useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Head, Link } from "@inertiajs/react";
 import "@/Pages/Admin/AdminPage.css";
 import HallAddPopup from "@/Pages/Admin/Modals/HallAddPopup";

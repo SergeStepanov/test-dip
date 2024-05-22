@@ -20,8 +20,6 @@ export default function MovieAddPopup() {
         post(route("movie.store"), {
             onSuccess: () => hendleClosePopupsBtn(e),
         });
-
-        // if (data.title.trim() !== "") hendleClosePopupsBtn(e);
     }
 
     return (

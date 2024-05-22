@@ -29,7 +29,6 @@ class SessionController extends Controller
      */
     public function store(SessionRequest $request): void
     {
-        // dd($request->all());
         Session::create($request->validated());
     }
 

@@ -43,7 +43,7 @@ class UserPageController extends Controller
             ->where('dateTime', $sessionDate)
             ->pluck('seatsNumber'));
 
-        $seats = Seat::where('hall_id', $session->hall_id)->get();
+        $seats = Seat::where('hall_id', $session->hall_id)->orderBy('number')->get();
 
         foreach ($seats as $seat) {
             foreach ($takenSeats as $value) {
@@ -52,8 +52,6 @@ class UserPageController extends Controller
                 }
             }
         }
-
-        // dd($takenSeats);
 
         return Inertia::render('User/HallPageContent', [
             'session' => $session,

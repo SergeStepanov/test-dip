@@ -1,6 +1,5 @@
 import { hendleToggleHeaderSection, openPopup } from "@/admin/helpFunctions";
 import { usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 function SessionGridContent({ setMovieId, setDelSession }) {
     const { movies, sessions } = usePage().props;
@@ -49,54 +48,51 @@ function SessionGridContent({ setMovieId, setDelSession }) {
                 </div>
                 {sessions.length !== 0 && (
                     <div className="conf-step__seances">
-                        {sessions.map((item, ind) => item.sessions.length !== 0 && (
-                            <div
-                                className="conf-step__seances-hall"
-                                key={item.id}
-                            >
-                                <h3 className="conf-step__seances-title">
-                                    {item.name}
-                                </h3>
-                                <div className="conf-step__seances-timeline">
-                                    {item.sessions.map((elem, index) => (
-                                        <div
-                                            key={elem.id}
-                                            className="conf-step__seances-movie"
-                                            style={{
-                                                width: 60 + "px",
-                                                backgroundColor: `rgb(133, 255, 137)`,
-                                                left: index * 60,
-                                                cursor: "pointer",
-                                            }}
-                                            onClick={(e) => {
-                                                setDelSession(elem);
+                        {sessions.map(
+                            (item, ind) =>
+                                item.sessions.length !== 0 && (
+                                    <div
+                                        className="conf-step__seances-hall"
+                                        key={item.id}
+                                    >
+                                        <h3 className="conf-step__seances-title">
+                                            {item.name}
+                                        </h3>
+                                        <div className="conf-step__seances-timeline">
+                                            {item.sessions.map(
+                                                (elem, index) => (
+                                                    <div
+                                                        key={elem.id}
+                                                        className="conf-step__seances-movie"
+                                                        style={{
+                                                            width: 60 + "px",
+                                                            backgroundColor: `rgb(133, 255, 137)`,
+                                                            left: index * 60,
+                                                            cursor: "pointer",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            setDelSession(elem);
 
-                                                openPopup("delete_show_time");
-                                            }}
-                                        >
-                                            <p className="conf-step__seances-movie-title">
-                                                {elem.movie.title}
-                                            </p>
-                                            <p className="conf-step__seances-movie-start">
-                                                {elem.start_time}
-                                            </p>
+                                                            openPopup(
+                                                                "delete_show_time"
+                                                            );
+                                                        }}
+                                                    >
+                                                        <p className="conf-step__seances-movie-title">
+                                                            {elem.movie.title}
+                                                        </p>
+                                                        <p className="conf-step__seances-movie-start">
+                                                            {elem.start_time}
+                                                        </p>
+                                                    </div>
+                                                )
+                                            )}
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
+                                    </div>
+                                )
+                        )}
                     </div>
                 )}
-                {/* <fieldset className="conf-step__buttons text-center">
-                    <button className="conf-step__button conf-step__button-regular">
-                        Отмена
-                    </button>
-                    <input
-                        type="submit"
-                        value="Сохранить"
-                        className="conf-step__button conf-step__button-accent"
-                    />
-                </fieldset> */}
             </div>
         </section>
     );
