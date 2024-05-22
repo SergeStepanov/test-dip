@@ -13,7 +13,7 @@ class HallSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('Halls')->insert([
+        DB::table('halls')->insert([
             'name' => 'Зал 1',
             'rows' => 6,
             'cols' => 6,
